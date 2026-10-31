@@ -19,7 +19,7 @@ export function Licenses() {
               key={index}
               target="_blank"
               href={license.href}
-              className="bg-secondary flex-center rounded-2xl p-6"
+              className="bg-secondary flex-center aspect-square rounded-2xl p-5"
             >
               <Image alt={license.label} src={license.image} />
             </Link>

@@ -1,13 +1,10 @@
 import '@/theme/globals.css';
 
-import type { Metadata } from 'next';
 import { Providers } from '@/providers';
+import { metadataConfig } from '@/config/metadata/global';
 import { inter_font, hezargan_font, iransans_font } from '@/theme/font';
 
-export const metadata: Metadata = {
-  title: 'Safarname24',
-  description: 'Safarname24 booking agency',
-};
+export const metadata = metadataConfig;
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (

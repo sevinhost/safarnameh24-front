@@ -36,7 +36,7 @@ export function AccessLinks() {
       <div className="hidden justify-evenly text-sm font-medium lg:flex">
         {accessLinks?.map((group, index) => (
           <div key={index}>
-            <div className="text-foreground mb-4 border-b pb-4">
+            <div className="text-foreground mb-5 border-b pb-4">
               {group.title}
             </div>
 

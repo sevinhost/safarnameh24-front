@@ -21,15 +21,14 @@ import {
 } from '@/components/ui/sheet';
 
 import Link from 'next/link';
+import Brand from '../brand';
 
-import { routes } from '@/config/routes';
 import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { content } from '@/lib/constants/header';
 
 import { ThemeSwitcher } from '@/components/common/theme-switcher';
-import Brand from './brand';
 
 // ------------------------------
 
@@ -52,7 +51,7 @@ export default function Menu() {
         className={'w-full! gap-0 rounded-none'}
       >
         <SheetHeader className="h-20 flex-row items-center gap-2 border-b">
-          <Brand />
+          <Brand showTitle />
           <ThemeSwitcher className="mr-auto" />
 
           <SheetClose
@@ -106,19 +105,15 @@ export default function Menu() {
           </Button>
 
           <Button
-            nativeButton={false}
             className={
               'col-span-2 h-12 justify-start gap-2.5 px-5 font-semibold'
             }
-            render={
-              <Link href={routes.login}>
-                <LogIn />
-                <span>ورود به حساب کاربری</span>
+          >
+            <LogIn />
+            <span>ورود به حساب کاربری</span>
 
-                <MoveLeft className="mr-auto" />
-              </Link>
-            }
-          />
+            <MoveLeft className="mr-auto" />
+          </Button>
         </div>
       </SheetContent>
     </Sheet>

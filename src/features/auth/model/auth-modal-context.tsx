@@ -19,7 +19,6 @@ export const AuthModalProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   // Modal visibility
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log(isOpen);
 
   // Stepper state
   const [step, setStep] = useState<AuthStep>('phone');

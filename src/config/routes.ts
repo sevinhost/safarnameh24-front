@@ -1,13 +1,6 @@
 export const routes = {
-  home: '/',
-  login: '/login',
+  index: '/',
 
-  hosting: '/hosting',
-  hosting_detail: 'hosting-detail',
-
-  domain: '/domain',
-  server: '/server',
-
-  about_us: '/about-us',
-  contact_us: '/contact-us',
+  aboutUs: '/about-us',
+  contactUs: '/contact-us',
 } as const;

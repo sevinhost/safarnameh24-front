@@ -1,5 +1,6 @@
 import { CONTACT } from '@/lib/constants/general';
 import { ThemeTabs } from '@/components/common/theme-switcher';
+import { SITE_CONFIG } from '@/config/site';
 
 // ------------------------------
 
@@ -9,7 +10,7 @@ export function Contact() {
       <div className="flex flex-col items-start gap-4">
         <p className="font-semibold">
           <span className="text-muted-foreground">
-            با پشتیبانی 24 ساعته سفرنامه ,
+            با پشتیبانی حرفه ای {SITE_CONFIG.brand.name} ,
           </span>{' '}
           <span>همیشه همراه شما هستیم :)</span>
         </p>

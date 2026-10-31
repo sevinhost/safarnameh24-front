@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { AuthFormValues } from '../model/types';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Info, Loader2 } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
 export const AuthFooter: React.FC = () => {
   const { step, isSubmitting } = useAuthModal();
@@ -16,8 +17,8 @@ export const AuthFooter: React.FC = () => {
       <div className="flex items-center gap-1.5">
         <Info className="text-muted-foreground size-3.5" />
         <p className="text-muted-foreground text-xs/5 font-medium">
-          ورود و استفاده از سفرنامه 24 به معنای پذیرش قوانین و مقررات آن می
-          باشد.
+          ورود و استفاده از {SITE_CONFIG.brand.name} 24 به معنای پذیرش قوانین و
+          مقررات آن می باشد.
         </p>
       </div>
 
