@@ -53,7 +53,7 @@ const passengerSchema = z.object({
 });
 
 // =============================================================
-// ۳. اسکیما اصلی فرم
+// ۳. اسکیما اصلی فرم (نفر اضافه حذف شد)
 // =============================================================
 export const formSchema = z.object({
   reserver: reserverSchema,
@@ -76,14 +76,10 @@ export const formSchema = z.object({
         }),
       }),
       passengers: z.object({
-        // مسافر اصلی: تمام مشخصات اختیاری
+        // مسافر اصلی: اختیاری
         main_passenger: passengerSchema,
         // سایر مسافران: اختیاری
         other_passengers: z.array(
-          passengerSchema.omit({ phone_number: true }),
-        ),
-        // مسافران اضافه: اختیاری
-        extra_capacity_passengers: z.array(
           passengerSchema.omit({ phone_number: true }),
         ),
       }),
@@ -91,5 +87,5 @@ export const formSchema = z.object({
   ),
 });
 
-// تایپ TypeScript استخراج‌شده از اسکیما (جهت استفاده در کامپوننت‌ها)
+// تایپ TypeScript استخراج‌شده از اسکیما
 export type FormSchemaType = z.infer<typeof formSchema>;
