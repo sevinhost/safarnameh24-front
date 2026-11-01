@@ -26,13 +26,14 @@ type Props = {
   roomId: number;
   hotelId: number;
   roomNumber: number;
+  canBook?: boolean;        // ← فیلد جدید از بک‌اند
   checkAuth?: () => boolean;
 };
 
 // -----------------------------
 
 export default function ReserveButton(props: Props) {
-  const { roomId, hotelId, roomNumber } = props;
+  const { roomId, hotelId, roomNumber, canBook = true } = props;
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -62,18 +63,36 @@ export default function ReserveButton(props: Props) {
     },
     onError: (error) => {
       setLoading(false);
+
+      // پیام خطای استاندارد از بک‌اند
+      const errorData = error?.response?.data;
+      const errorMessage =
+        errorData?.detail ||
+        errorData?.error ||
+        (typeof errorData === 'object' && errorData?.code === 'no_availability'
+          ? 'این اتاق در بازه تاریخی انتخاب‌شده ظرفیت خالی ندارد.'
+          : null) ||
+        'عملیات رزرو با مشکلی روبرو شده است. لطفاً مجدداً تلاش فرمایید.';
+
       callReaction({
         type: 'error',
-        title: 'متاسفانه خطایی رخ داده است !',
-        description:
-          error?.response?.data?.detail ??
-          error?.response?.data?.error ??
-          'عملیات رزرو با مشکلی روبرو شده است. لطفاً مجدداً تلاش فرمایید.',
+        title: 'امکان رزرو وجود ندارد',
+        description: errorMessage,
       });
     },
   });
 
   function handleClick() {
+    // اگر از بک‌اند گفته شده قابل رزرو نیست
+    if (!canBook) {
+      callReaction({
+        type: 'error',
+        title: 'ظرفیت تکمیل است',
+        description: 'این اتاق در بازه تاریخی انتخاب‌شده ظرفیت خالی ندارد. لطفاً تاریخ دیگری انتخاب کنید.',
+      });
+      return;
+    }
+
     const exitDate = searchParams.get('end-date');
     const enterDate = searchParams.get('start-date');
 
@@ -97,19 +116,28 @@ export default function ReserveButton(props: Props) {
     });
   }
 
+  // اگر قابل رزرو نباشد → دکمه غیرفعال + متن متفاوت
+  const isDisabled = isLoading || !canBook;
+
   return (
     <button
       onClick={handleClick}
-      disabled={isLoading}
-      className="col-span-2 flex-center h-11 w-full rounded-cs-10 bg-cs-dark-blue font-bold text-zinc-100"
+      disabled={isDisabled}
+      className={`col-span-2 flex-center h-11 w-full rounded-cs-10 font-bold ${
+        canBook
+          ? 'bg-cs-dark-blue text-zinc-100'
+          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+      }`}
     >
       {isLoading ? (
         <span
           className={loader.dots}
           style={{ '--dots-color': '#fff' } as CSSVars}
         />
-      ) : (
+      ) : canBook ? (
         'رزرو اتاق'
+      ) : (
+        'ظرفیت تکمیل'
       )}
     </button>
   );
