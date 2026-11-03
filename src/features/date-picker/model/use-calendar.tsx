@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import DateObject from 'react-date-object';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
@@ -17,28 +17,37 @@ export const useCalendar = (
 ) => {
   const [calendarType, setCalendarType] = useState<CalendarType>('persian');
 
-  // استیت قطعی و تایید شده
+  // Committed & confirmed dates
   const [selectedDates, setSelectedDates] = useState<DateObject[]>(() =>
     initialRange ? (initialRange.filter(Boolean) as DateObject[]) : [],
   );
 
-  // استیت پیش‌نویس (Draft)
+  // Transient / draft dates before confirmation
   const [draftDates, setDraftDates] = useState<DateObject[]>(() =>
     initialRange ? (initialRange.filter(Boolean) as DateObject[]) : [],
   );
 
-  // سوییچ شمسی / میلادی
+  // Sync internal states when initialRange changes from outside (e.g., URL / popstate)
+  useEffect(() => {
+    const validDates = initialRange
+      ? (initialRange.filter(Boolean) as DateObject[])
+      : [];
+    setSelectedDates(validDates);
+    setDraftDates(validDates);
+  }, [initialRange]);
+
+  // Switch calendar between Jalali and Gregorian
   const toggleCalendarType = useCallback(() => {
     setCalendarType((prev) => (prev === 'persian' ? 'gregorian' : 'persian'));
   }, []);
 
-  // فقط برای استفاده نمایشی در دکمه دراور موبایل (اختیاری)
+  // Compute stay duration in nights for preview
   const draftNights = useMemo(() => {
     if (draftDates.length < 2) return 0;
     return calculateNights(draftDates[0], draftDates[1]);
   }, [draftDates]);
 
-  // ثبت قطعی و ارسال آرایه به والد
+  // Persist dates and notify parent
   const commitDates = useCallback(
     (datesToCommit: DateObject[]) => {
       setSelectedDates(datesToCommit);
@@ -48,13 +57,12 @@ export const useCalendar = (
       const startDate = datesToCommit[0] || null;
       const endDate = datesToCommit[1] || null;
 
-      // خروجی تمیز و استاندارد به صورت آرایه
       onChange([startDate, endDate]);
     },
     [onChange],
   );
 
-  // انتخاب تاریخ
+  // Handle day selections in calendar
   const handleSelectDates = useCallback(
     (dates: DateObject[], autoCommit = false) => {
       setDraftDates(dates);
@@ -66,17 +74,17 @@ export const useCalendar = (
     [commitDates],
   );
 
-  // تایید دستی دراور موبایل
+  // Manually confirm draft state (e.g., mobile drawer button)
   const confirmDraft = useCallback(() => {
     commitDates(draftDates);
   }, [commitDates, draftDates]);
 
-  // ریست کردن به حالت قبل در صورت بستن دراور
+  // Revert draft changes back to last committed state
   const resetDraft = useCallback(() => {
     setDraftDates(selectedDates);
   }, [selectedDates]);
 
-  // پاک کردن
+  // Clear all dates
   const handleClear = useCallback(() => {
     setDraftDates([]);
     setSelectedDates([]);
@@ -88,16 +96,16 @@ export const useCalendar = (
   return {
     calendarType,
     toggleCalendarType,
-    // استیت‌ها
+    // States
     selectedDates,
     draftDates,
     draftNights,
-    // متدها
+    // Actions
     handleSelectDates,
     confirmDraft,
     resetDraft,
     handleClear,
-    // زبان و تقویم
+    // Localization
     currentCalendar: calendarType === 'persian' ? persian : gregorian,
     currentLocale: calendarType === 'persian' ? persian_fa : gregorian_en,
   };

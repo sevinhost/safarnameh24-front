@@ -1,27 +1,27 @@
 import { cn } from 'cn';
 
+import { ArrowLeftRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { CalendarType } from '../../model/types';
-import { CalendarRange } from 'lucide-react';
+
+import { useDatePicker } from '../../model/date-picker-context';
 
 type Props = {
   className?: string;
-  onClick: () => void;
-  calendarType: CalendarType;
 };
 
 // ------------------------------
 
 export default function ToggleCalendar(props: Props) {
-  const { calendarType, onClick, className } = props;
+  const { className } = props;
+  const { calendarType, toggleCalendarType } = useDatePicker();
 
   return (
     <Button
-      onClick={onClick}
       variant={'secondary'}
-      className={cn('h-10 px-5 sm:h-11', className)}
+      onClick={toggleCalendarType}
+      className={cn('px-5', className)}
     >
-      <CalendarRange className="size-4" />
+      <ArrowLeftRight className="size-4" />
       {calendarType === 'persian' ? 'تقویم میلادی' : 'تقویم شمسی'}
     </Button>
   );

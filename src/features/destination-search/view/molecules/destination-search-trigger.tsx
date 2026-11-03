@@ -16,11 +16,11 @@ export default function DestinationSearchTrigger(props: Props) {
   const { destination, handleOpenDestinationSearch } = props;
 
   return (
-    <div className="flex flex-col gap-4">
-      <Label className="gap-1.5 px-1 text-sm/3 font-semibold">
+    <div className="flex h-14 flex-col gap-4">
+      {/* <Label className="gap-1.5 px-1 text-sm/3 font-semibold">
         <MapPin className="size-4.5" />
         <span>انتخاب مقصد</span>
-      </Label>
+      </Label> */}
 
       <Input
         onClick={handleOpenDestinationSearch}

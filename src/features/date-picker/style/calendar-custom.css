@@ -1,0 +1,178 @@
+/* === Root Variables === */
+.calendar-custom {
+  --calendar-radius: 0.7rem;
+
+  direction: rtl !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: 26rem !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  user-select: none !important;
+}
+
+/* === Layout & Structure === */
+.calendar-custom .rmdp-calendar {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.calendar-custom .rmdp-day-picker {
+  gap: 2rem !important;
+  padding: 0 !important;
+  justify-content: space-between !important;
+}
+
+.calendar-custom .rmdp-day-picker > div {
+  width: 100%;
+  margin: 0 !important;
+}
+
+/* === Header Section === */
+.calendar-custom .rmdp-header {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.calendar-custom .rmdp-header div .rmdp-header-values {
+  color: var(--color-foreground) !important;
+  font-weight: 600 !important;
+  font-size: clamp(0.9rem, 3vw, 0.95rem) !important;
+}
+
+/* Hide duplicate year label */
+.calendar-custom .rmdp-header div .rmdp-header-values span:nth-child(2) {
+  display: none;
+}
+
+/* === Week Days (Header) === */
+.calendar-custom .rmdp-day-picker .rmdp-week:first-child {
+  margin-block: 1rem;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-week-day {
+  flex: 1 1 0% !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 3rem !important;
+  aspect-ratio: 1 / 1 !important;
+  color: var(--color-muted-foreground) !important;
+  font-weight: 600 !important;
+  font-size: clamp(0.9rem, 3vw, 0.95rem) !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-week-day:first-child {
+  border-radius: 0 var(--calendar-radius) var(--calendar-radius) 0 !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-week-day:last-child {
+  border-radius: var(--calendar-radius) 0 0 var(--calendar-radius) !important;
+}
+
+/* === Days Grid === */
+.calendar-custom .rmdp-day-picker .rmdp-day {
+  flex: 1 1 0% !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 3rem !important;
+  aspect-ratio: 1 / 1 !important;
+  color: var(--color-muted-foreground) !important;
+  box-shadow: none !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-day span {
+  color: unset !important;
+  font-weight: 600 !important;
+  font-size: clamp(0.9rem, 3vw, 0.95rem) !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* === Range Selection States === */
+.calendar-custom .rmdp-day-picker .rmdp-day.rmdp-range,
+.calendar-custom .rmdp-day-picker .rmdp-day.rmdp-range-hover {
+  background-color: var(--color-secondary) !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-day.start,
+.calendar-custom .rmdp-day-picker .rmdp-day.end {
+  color: var(--color-primary-foreground) !important;
+  background-color: var(--color-primary) !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-day.start {
+  border-radius: 0 !important;
+  border-start-start-radius: var(--calendar-radius) !important;
+  border-end-start-radius: var(--calendar-radius) !important;
+}
+
+.calendar-custom .rmdp-day-picker .rmdp-day.end {
+  border-radius: 0 !important;
+  border-start-end-radius: var(--calendar-radius) !important;
+  border-end-end-radius: var(--calendar-radius) !important;
+}
+
+/* Round range edges on week row boundaries */
+.calendar-custom
+  .rmdp-day-picker
+  .rmdp-week:not(:first-child)
+  .rmdp-day.rmdp-range:first-child,
+.calendar-custom
+  .rmdp-day-picker
+  .rmdp-week:not(:first-child)
+  .rmdp-day.rmdp-range-hover:first-child {
+  border-radius: 0 var(--calendar-radius) var(--calendar-radius) 0 !important;
+}
+
+.calendar-custom
+  .rmdp-day-picker
+  .rmdp-week:not(:first-child)
+  .rmdp-day.rmdp-range:last-child,
+.calendar-custom
+  .rmdp-day-picker
+  .rmdp-week:not(:first-child)
+  .rmdp-day.rmdp-range-hover:last-child {
+  border-radius: var(--calendar-radius) 0 0 var(--calendar-radius) !important;
+}
+
+/* === Special States & Overrides === */
+/* Single day range selection */
+.calendar-custom .rmdp-day-picker .rmdp-day.start.end {
+  border-radius: var(--calendar-radius) !important;
+}
+
+/* Disabled past days */
+.calendar-custom .rmdp-day-picker .rmdp-day.rmdp-disabled {
+  opacity: 25% !important;
+}
+
+/* Today indicator outside active range */
+.calendar-custom .rmdp-day-picker .rmdp-day.rmdp-today:not(.rmdp-range) {
+  color: #ffffff !important;
+  background-color: #e42639 !important;
+  border-radius: var(--calendar-radius) !important;
+}
+
+/* Weekend highlights */
+.calendar-custom
+  .rmdp-day-picker
+  .rmdp-day:not(.start, .end, .rmdp-today, .rmdp-disabled)
+  span.highlight.highlight-red {
+  color: #e42639 !important;
+}
+
+/* === Responsive Media Queries === */
+@media screen and (min-width: 768px) {
+  .calendar-custom .rmdp-header .rmdp-header-values:first-of-type {
+    padding-inline-end: 3rem;
+  }
+
+  .calendar-custom .rmdp-header .rmdp-header-values:last-of-type {
+    padding-inline-start: 3rem;
+  }
+}

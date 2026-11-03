@@ -10,6 +10,7 @@ import { DirectionProvider } from '@/components/ui/direction';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthModalProvider } from '@/features/auth/model/auth-modal-context';
 import { AuthModal } from '@/features/auth/view/auth-modal';
+import { DatePickerProvider } from '@/features/date-picker/model/date-picker-context';
 
 // ------------------------------
 
@@ -36,11 +37,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <TooltipProvider>
           <AuthModalProvider>
             <QueryClientProvider client={queryClient}>
-              {children}
+              <DatePickerProvider>
+                {children}
 
-              <Toaster />
-              <AuthModal />
-              {/* <AuthAlert /> */}
+                <Toaster />
+                <AuthModal />
+                {/* <AuthAlert /> */}
+              </DatePickerProvider>
             </QueryClientProvider>
           </AuthModalProvider>
         </TooltipProvider>

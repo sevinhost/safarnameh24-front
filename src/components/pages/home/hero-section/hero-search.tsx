@@ -3,11 +3,11 @@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { MapPin } from 'lucide-react';
+import { ArrowLeft, MapPin, Search } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from 'cn';
-import { Calendar } from '@/features/calendar/view/organisms/calendar';
-import { DateRange } from '@/features/calendar/model/use-calendar';
+import { DatePicker } from '@/features/date-picker';
+import { DateRange } from '@/features/date-picker/model/use-calendar';
 import { DestinationSearchWrapper } from '@/features/destination-search/view/organisms/destination-search-wrapper';
 import DestinationSearchDialog from '@/features/destination-search/view/organisms/destination-search-dialog';
 import DestinationSearchTrigger from '@/features/destination-search/view/molecules/destination-search-trigger';
@@ -20,14 +20,10 @@ import DestinationSearch from '@/features/destination-search/view/organisms/dest
 // ------------------------------
 
 export default function HeroSearch() {
-  const [dates, setDates] = useState<DateRange>([null, null]);
   const [destination, setDestination] = useState<DestinationState | null>(null);
 
   const [destinationOpen, setDestinationOpen] = useState(false);
   const handleOpenDestinationSearch = () => setDestinationOpen(true);
-
-  // console.log('dates', dates);
-  // console.log('destination', destination);
 
   return (
     <div
@@ -57,10 +53,11 @@ export default function HeroSearch() {
         onDestinationChange={(destination) => setDestination(destination)}
       />
 
-      <Calendar initialRange={dates} onChange={(dates) => setDates(dates)} />
+      <DatePicker />
 
-      <Button className={'h-12 lg:w-40'}>
-        <span className="font-semibold">جستجو</span>
+      <Button className={'h-12 lg:h-14 lg:w-40'}>
+        <span className="text-09 font-bold">جستجو</span>
+        <ArrowLeft />
       </Button>
     </div>
   );
