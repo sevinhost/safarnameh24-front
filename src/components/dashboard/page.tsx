@@ -160,7 +160,7 @@ function InnerPage({
           <Logo onlyLogo />
           <div className="mb-6 mt-3 w-full">
             <span className="mb-0 block truncate text-center text-cs08 font-bold text-black">
-              Zarvantrip
+              safarnameh24
             </span>
 
             <span className="block truncate text-center text-cs08 font-bold text-gray-500">

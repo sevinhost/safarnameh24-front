@@ -29,7 +29,7 @@ export default function Filter({
       )}
     >
       <span className="hidden w-full truncate text-right text-[16px] font-bold text-black lg:block">
-        داشبورد زروان تریپ
+        داشبورد سفرنامه ۲۴
       </span>
       <div className="block lg:flex lg:shrink-0 lg:gap-2">
         <div className="mb-[17px] flex gap-[17px] lg:mb-0 lg:gap-2">

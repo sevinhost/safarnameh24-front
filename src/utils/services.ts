@@ -4,7 +4,7 @@ export const generalInstance = axios.create({
   baseURL:
     typeof window !== 'undefined'
       ? '/api/v1'
-      : 'https://cps.zarvantrip.com/api/v1',
+      : 'https://cps.safarnameh24.com/api/v1',
 });
 
 generalInstance.interceptors.request.use(

@@ -66,7 +66,7 @@ export default function UserCreditCard({
               data={{
                 bankIcon: 'unknown',
                 holderName: '-',
-                bankName: 'Zarvantrip',
+                bankName: 'safarnameh24',
                 iban: '************************',
                 number: '****************',
               }}

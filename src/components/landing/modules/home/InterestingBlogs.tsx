@@ -23,7 +23,7 @@ export function InterestingBlogs() {
         title={{ type: 'single', text: 'بلاگ های جذاب' }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}
-        subtitle="بلاگ های محبوب و جذاب زروان تریپ رو حتما بخون !"
+        subtitle="بلاگ های محبوب و جذاب سفرنامه ۲۴ رو حتما بخون !"
       />
 
       <Swiper

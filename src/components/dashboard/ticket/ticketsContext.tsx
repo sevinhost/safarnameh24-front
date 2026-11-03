@@ -346,7 +346,7 @@ export default function TicketsContext({
                 ? 'تیکت های گذشته '
                 : mobileActiveTab === 'settings'
                   ? 'تنظیمات چت'
-                  : 'چت تایم زروان تریپ'}
+                  : 'چت تایم سفرنامه ۲۴'}
             </span>
             <div className="flex shrink-0 items-center justify-between gap-3">
               <button
@@ -625,7 +625,7 @@ export default function TicketsContext({
             <div className="flex w-full shrink-0 items-center justify-between gap-3">
               {!foundedTicketItem ? (
                 <span className="block flex-1 truncate text-start text-cs95 font-bold text-black">
-                  بخش دپارتمان زروان تریپ
+                  بخش دپارتمان سفرنامه ۲۴
                 </span>
               ) : foundedTicketItem && foundedTicketItem.status === 'open' ? (
                 <span className="block flex-1 truncate text-start text-cs95 font-bold text-black">

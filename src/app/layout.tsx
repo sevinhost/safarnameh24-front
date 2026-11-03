@@ -130,10 +130,10 @@ const iranSansFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'زروان تریپ',
+  title: 'سفرنامه ۲۴',
   description: 'رزرواسیون آنلاین هتل به صورت ۲۴ ساعته',
   openGraph: {
-    title: 'زروان تریپ',
+    title: 'سفرنامه ۲۴',
     description: 'رزرواسیون آنلاین هتل به صورت ۲۴ ساعته ',
   },
 };

@@ -34,7 +34,7 @@ export function ContactUsWays() {
     <div>
       <TopBarConfig
         title={{ type: 'single', text: 'تماس با ما' }}
-        subtitle="راه های ارتباطی با آژانس زروان تریپ"
+        subtitle="راه های ارتباطی با آژانس سفرنامه ۲۴"
       />
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-5">

@@ -27,7 +27,7 @@ export function useReservationWebSocket(trackingCode: string | null) {
     }
 
     const connect = () => {
-      const ws = new WebSocket(`wss://cps.zarvantrip.com/ws/${trackingCode}/`);
+      const ws = new WebSocket(`wss://cps.safarnameh24.com/ws/${trackingCode}/`);
 
       ws.onopen = () => {
         // console.log('WebSocket connected for', trackingCode);

@@ -98,7 +98,7 @@ export default function PhoneNumber(props: Props) {
         </span>
 
         <p className="text-cs08 font-semibold text-zinc-600">
-          برای ورود به زروان تریپ شماره همراه خود را وارد نمایید :
+          برای ورود به سفرنامه ۲۴ شماره همراه خود را وارد نمایید :
         </p>
 
         <div

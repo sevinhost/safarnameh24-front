@@ -122,7 +122,7 @@ export default function ReservationFactorPage({
           />
           <div className="pointer-events-none absolute right-5 top-5 z-20 select-none">
             <Image
-              alt="لوگو زروان تریپ"
+              alt="لوگو سفرنامه ۲۴"
               priority
               unoptimized
               src={LogoIcon.src}
@@ -136,7 +136,7 @@ export default function ReservationFactorPage({
                 aubrey.className,
               )}
             >
-              Zarvantrip
+              safarnameh24
             </span>
             <span
               className={cn(
@@ -144,7 +144,7 @@ export default function ReservationFactorPage({
                 sepahboodFont.className,
               )}
             >
-              زروان تریپ
+              سفرنامه ۲۴
             </span>
             <span
               className={'block text-center text-cs06 font-normal text-black'}
@@ -153,7 +153,7 @@ export default function ReservationFactorPage({
             </span>
           </div>
           <Image
-            alt="لوگو زروان تریپ"
+            alt="لوگو سفرنامه ۲۴"
             priority
             unoptimized
             src={LogoIcon.src}
