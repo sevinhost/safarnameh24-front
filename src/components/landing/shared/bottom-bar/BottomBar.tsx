@@ -42,7 +42,7 @@ export function BottomBar() {
     >
       <BottomBarItem title="خانه" href="/" icon={'Home2'} />
       <BottomBarItem icon={'Book'} title="مجله گردشگری" href="/blog" />
-      <BottomBarItem icon={'Flash'} href="/best-hotels" title="بهترین هتل ها" />
+      <BottomBarItem icon={'Flash'} href="/hotel" title="بهترین هتل ها" />
       <UserFavorites />
 
       {isAuthenticated ? (

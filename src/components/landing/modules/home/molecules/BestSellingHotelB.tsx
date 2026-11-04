@@ -22,7 +22,7 @@ export default function BestSellingHotelB(props: Props) {
 
   return (
     <Link
-      href={`/best-hotels/${slug}`}
+      href={`/hotel/${slug}`}
       className="relative bg-white h-[21rem] p-3 flex flex-col gap-3 rounded-2xl shadow-[0_0.5rem_1rem_rgba(0,0,0,0.02)]"
     >
       {/* Image */}

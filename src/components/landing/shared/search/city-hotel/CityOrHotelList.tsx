@@ -54,7 +54,7 @@ export function CityOrHotelList(props: Props) {
           ) : null}
 
           {/* === Hotels */}
-          {pathname !== '/best-hotels' && hotels?.length ? (
+          {pathname !== '/hotel' && hotels?.length ? (
             <div className="pl-3 mt-2">
               <div className="text-zinc-500 text-cs08 font-semibold mb-1.5 pr-4">
                 هتل
@@ -77,7 +77,7 @@ export function CityOrHotelList(props: Props) {
           ) : null}
 
           {/* === Error-Message */}
-          {pathname === '/best-hotels' ? (
+          {pathname === '/hotel' ? (
             (!cities?.length && hotels?.length) ||
             (!cities?.length && !hotels?.length) ? (
               <div className="text-cs08 text-center text-gray-500 font-medium mt-4 lg:mt-2">

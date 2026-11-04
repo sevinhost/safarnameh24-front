@@ -67,7 +67,7 @@ const CountDownItem = (props: CountDownItemProps) => {
     <div
       className={`w-9 text-cs75 font-extrabold pt-0.5 flex-center gap-1 rounded-md lg:w-20 lg:font-bold lg:rounded-lg ${
         type === 'روز'
-          ? pathname === '/best-hotels'
+          ? pathname === '/hotel'
             ? 'bg-cs-red/10 text-cs-red border-2 border-cs-red border-dashed lg:border-none'
             : 'bg-cs-red/10 text-cs-red border-2 border-cs-red border-dashed'
           : 'bg-zinc-200/50 text-zinc-800'

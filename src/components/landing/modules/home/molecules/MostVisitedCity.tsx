@@ -17,7 +17,7 @@ export default function MostVisitedCity(props: Props) {
 
   return (
     <Link
-      href={`/best-hotels?city=${name}&province=${province}`}
+      href={`/hotel?city=${name}&province=${province}`}
       className="h-56 relative group cursor-pointer flex flex-col xl:h-60"
     >
       {/* Image */}

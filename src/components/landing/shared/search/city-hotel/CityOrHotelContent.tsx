@@ -100,7 +100,7 @@ export default function CityOrHotelContent(props: Props) {
           value={inputValue}
           onChange={handleInputChange}
           placeholder={
-            pathname === '/best-hotels'
+            pathname === '/hotel'
               ? 'جتسجو شهر مقصد ...'
               : 'جستجو شهر یا هتل ...'
           }

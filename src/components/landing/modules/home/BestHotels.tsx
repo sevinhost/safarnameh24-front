@@ -75,7 +75,7 @@ export function BestHotels() {
               className="max-w-40 select-none xl:max-w-full"
             >
               <Link
-                href={`/best-hotels/${hotel.hotel_slug}`}
+                href={`/hotel/${hotel.hotel_slug}`}
                 className="relative bg-white h-28 p-4 group flex-center rounded-xl shadow-[0_0.5rem_1rem_rgba(0,0,0,0.02)] xl:h-32 xl:p-6"
               >
                 {hotel && (

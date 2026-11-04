@@ -54,14 +54,14 @@ export default function SearchAndFilter() {
     const commonParams = `start-date=${startDate}&end-date=${endDate}`;
 
     if (cityOrHotel.hotel) {
-      router.push(`/best-hotels/${cityOrHotel.hotelSlug}?${commonParams}`, {
+      router.push(`/hotel/${cityOrHotel.hotelSlug}?${commonParams}`, {
         scroll: true,
       });
     }
     // ===
     else {
       router.push(
-        `/best-hotels?${commonParams}&city=${cityOrHotel.city}&province=${cityOrHotel.province}`,
+        `/hotel?${commonParams}&city=${cityOrHotel.city}&province=${cityOrHotel.province}`,
         { scroll: true },
       );
     }

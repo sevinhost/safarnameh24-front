@@ -47,7 +47,7 @@ export function ClearFilters() {
       new DateObject(dateInfo).add(1, 'days').format('YYYY-MM-DD');
 
     router.replace(
-      `/best-hotels?start-date=${startDate}&end-date=${endDate}${hotelOrCity.city ? `&city=${hotelOrCity.city}` : ''}${hotelOrCity.province ? `&province=${hotelOrCity.province}` : ''}${!passengers.rooms ? '' : `&passengers=${encodeRooms(rooms)}`}${page ? `&page=${page}` : ''}`,
+      `/hotel?start-date=${startDate}&end-date=${endDate}${hotelOrCity.city ? `&city=${hotelOrCity.city}` : ''}${hotelOrCity.province ? `&province=${hotelOrCity.province}` : ''}${!passengers.rooms ? '' : `&passengers=${encodeRooms(rooms)}`}${page ? `&page=${page}` : ''}`,
       {
         scroll: true,
       },

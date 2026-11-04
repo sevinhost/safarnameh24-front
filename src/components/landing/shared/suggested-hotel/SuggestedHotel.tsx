@@ -60,7 +60,7 @@ export function SuggestedHotel(props: Props) {
           />
         )}
 
-        {pathname === '/best-hotels' && (
+        {pathname === '/hotel' && (
           <div className="absolute left-2.5 top-2.5 rounded-md bg-cs-blue px-3 py-1 text-cs07/5 font-medium text-white">
             {bestType === 'suggested' ? 'پیشنهادی' : 'شگفت انگیز'}
           </div>
@@ -123,7 +123,7 @@ export function SuggestedHotel(props: Props) {
 
         {/* Hotel-Reservation */}
         <Link
-          href={`/best-hotels/${slug}`}
+          href={`/hotel/${slug}`}
           onClick={() => setClicked(true)}
           className="flex-center mt-2 h-10 rounded-[11px] bg-cs-dark-blue text-zinc-100 transition-colors duration-200 ease-in-out hover:text-zinc-100"
         >

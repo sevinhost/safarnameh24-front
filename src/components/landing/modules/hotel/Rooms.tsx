@@ -86,7 +86,7 @@ export function Rooms({ hotelSlug }: Props) {
     }
 
     router.replace(
-      `/best-hotels/${hotelSlug}?start-date=${startDate}&end-date=${endDate}${passengers === '0' ? '' : `&passengers=${encodeRooms(rooms)}`}`,
+      `/hotel/${hotelSlug}?start-date=${startDate}&end-date=${endDate}${passengers === '0' ? '' : `&passengers=${encodeRooms(rooms)}`}`,
       {
         scroll: false,
       },

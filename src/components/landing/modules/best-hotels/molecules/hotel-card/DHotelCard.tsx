@@ -39,7 +39,7 @@ export function DHotelCard(props: Props) {
   const startDate = searchParams.get('start-date');
   const passengers = searchParams.get('passengers');
 
-  const navigationLink = `/best-hotels/${slug}?start-date=${startDate}&end-date=${endDate}${passengers ? `&passengers=${passengers}` : ''}`;
+  const navigationLink = `/hotel/${slug}?start-date=${startDate}&end-date=${endDate}${passengers ? `&passengers=${passengers}` : ''}`;
 
   return (
     <div className="bg-white grid grid-cols-[1fr_2px_17rem] overflow-hidden rounded-2xl shadow-light">
