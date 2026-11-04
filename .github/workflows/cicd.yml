@@ -18,12 +18,12 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP_ZARVANTRIP }}
           username: ${{ secrets.SERVER_USER_ZARVANTRIP }}
-          port: 22 # 👈 پورت سرور زروان‌تریپ ۲۲ است
+          port: 22 
           key: ${{ secrets.SSH_PRIVATE_KEY_ZARVANTRIP }}
           script: |
             echo "🚀 Connected to Zarvantrip server"
 
-            cd /var/zarvantripfront
+            cd /var/safarnameh24-front
 
             NEW_TAG=$(date +%s)
 
