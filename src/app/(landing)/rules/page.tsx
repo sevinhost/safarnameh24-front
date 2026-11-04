@@ -6,6 +6,9 @@ import {
 import StickyArea from '@/components/landing/shared/StickyArea';
 import { Metadata } from 'next';
 
+// جلوگیری از ارور بیلد داکر در زمان ساخت صفحات استاتیک
+export const dynamic = 'force-dynamic';
+
 // 1. متادیتا برای این صفحه
 export const metadata: Metadata = {
   title: 'قوانین و مقررات زروان تریپ | شرایط رزرو هتل',
@@ -13,13 +16,25 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://zarvantrip.com/rules' },
 };
 
-// تابع دریافت داده در سمت سرور (جایگزین useQuery)
+// تابع دریافت داده در سمت سرور (کاملاً ایمن در برابر ارورهای URL و قطع بودن سرور)
 async function getRules() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/config/rules`, { 
-    next: { revalidate: 3600 } // کش کردن داده‌ها برای 1 ساعت
-  });
-  if (!res.ok) return null;
-  return res.json();
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  // اگر آدرس API ست نشده باشد (مثلاً در زمان بیلد داکر)، بیلد کرش نمی‌کند
+  if (!baseUrl) {
+    return null;
+  }
+
+  try {
+    const res = await fetch(`${baseUrl}/config/rules`, { 
+      next: { revalidate: 3600 } // کش کردن داده‌ها برای 1 ساعت
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error('خطا در دریافت قوانین:', error);
+    return null;
+  }
 }
 
 export default async function Rules() {
@@ -28,11 +43,11 @@ export default async function Rules() {
 
   const navList = data.map((item: any, index: number) => ({
     id: String(index),
-    tab_title: item.tab_title,
+    tab_title: item?.tab_title || '',
   }));
 
   const totalDuration = data.reduce((sum: number, item: any) => {
-    const plainText = item.text.replace(/<[^>]*>/g, '');
+    const plainText = (item?.text || '').replace(/<[^>]*>/g, '');
     return sum + Math.ceil(plainText.length / 1000);
   }, 0);
 
