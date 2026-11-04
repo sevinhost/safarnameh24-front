@@ -25,8 +25,8 @@ export default function SubmitButton(props: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isBestHotel = pathname === '/best-hotels';
-  const isHotelDetail = pathname.startsWith('/best-hotels/');
+  const isBestHotel = pathname === '/hotel';
+  const isHotelDetail = pathname.startsWith('/hotel/');
 
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -75,7 +75,7 @@ export default function SubmitButton(props: Props) {
 
       if (cityOrHotel.hotel) {
         router.replace(
-          `/best-hotels/${cityOrHotel.hotelSlug}/?${params.toString()}`,
+          `/hotel/${cityOrHotel.hotelSlug}/?${params.toString()}`,
           { scroll: true },
         );
       }
@@ -83,7 +83,7 @@ export default function SubmitButton(props: Props) {
       else {
         params.set('city', cityOrHotel.city);
         params.set('province', cityOrHotel.province);
-        router.replace(`/best-hotels/?${params.toString()}`, { scroll: true });
+        router.replace(`/hotel/?${params.toString()}`, { scroll: true });
       }
     }
     // 
@@ -121,7 +121,7 @@ export default function SubmitButton(props: Props) {
 
       // if (cityOrHotel.hotel) {
       //   router.replace(
-      //     `/best-hotels/${cityOrHotel.hotelSlug}/?${params.toString()}`,
+      //     `/hotel/${cityOrHotel.hotelSlug}/?${params.toString()}`,
       //     { scroll: true },
       //   );
       // }
@@ -129,7 +129,7 @@ export default function SubmitButton(props: Props) {
       // else {
       //   params.set('city', cityOrHotel.city);
       //   params.set('province', cityOrHotel.province);
-      //   router.replace(`/best-hotels/?${params.toString()}`, { scroll: true });
+      //   router.replace(`/hotel/?${params.toString()}`, { scroll: true });
       // }
     }
 

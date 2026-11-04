@@ -54,7 +54,7 @@ export default function Filter({
                 asChild
                 className="flex items-center justify-center gap-[5px] lg:h-10 h-[45px] lg:bg-white lg:hover:bg-white hover:bg-gray-100 bg-gray-100 lg:rounded-md rounded-[7px] lg:px-3 px-[10px] lg:shrink shrink-0 text-[#2b2b2b]"
               >
-                <Link href="/best-hotels">
+                <Link href="/hotel">
                   <IconsaxIcons
                     name="Add"
                     className="w-[18px] h-[18px]  shrink-0 text-current"

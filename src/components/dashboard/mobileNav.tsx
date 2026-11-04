@@ -33,7 +33,7 @@ const data: {
   {
     icon: 'Flash',
     title: 'بهترین هتل ها',
-    href: '/best-hotels',
+    href: '/hotel',
     type: 'link',
   },
   {

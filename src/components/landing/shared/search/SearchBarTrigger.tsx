@@ -67,7 +67,7 @@ export default function SearchBarTrigger(props: Props) {
           <SearchStatus size={19} color="#555" />
           <span>جستجو شهر یا هتل ...</span>
         </button>
-      ) : pathname === '/best-hotels' ? (
+      ) : pathname === '/hotel' ? (
         confirmedValue?.[0] ? (
           <div className="bg-zinc-200/50 h-14 px-[1.1rem] flex items-center gap-4 rounded-cs-10">
             <div className="font-semibold grid gap-1">

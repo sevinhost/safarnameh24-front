@@ -37,7 +37,7 @@ export function SuggestedHotels() {
     <div className="-ml-5 xl:ml-0">
       <TopBarConfig
         arraylength={data?.data?.length}
-        viewAllHref="/best-hotels?suggested-hotels=show"
+        viewAllHref="/hotel?suggested-hotels=show"
         subtitle="هتل های پیشنهادی زروان تریپ رو از دست نده !"
         title={{ type: 'single', text: 'هتل های پیشنهادی' }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}

@@ -35,7 +35,7 @@ export const footer = {
     { title: 'درباره ما', href: '/about-us' },
     { title: 'تماس با ما', href: '/contact-us' },
     { title: 'مجله گردشگری', href: '/weblog' },
-    { title: 'بهترین هتل ها', href: '/best-hotels' },
+    { title: 'بهترین هتل ها', href: '/hotel' },
     { title: 'قوانین و مقررات', href: '/rules' },
   ],
   socialMedias: [

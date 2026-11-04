@@ -49,7 +49,7 @@ export function SuggestedHotels(props: Props) {
         title={{ type: 'single', text: topBarConfigTitle }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}
-        viewAllHref={`/best-hotels?city=${city}&province=${province}`}
+        viewAllHref={`/hotel?city=${city}&province=${province}`}
       />
 
       {status === 'pending' ? (

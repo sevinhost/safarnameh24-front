@@ -36,7 +36,7 @@ export function AmazingHotels() {
     <div className="-ml-5 lg:ml-0">
       <TopBarConfig
         subtitle="هتل های تخفیف دار رو  از دست نده !"
-        viewAllHref="/best-hotels?amazing-hotels=show"
+        viewAllHref="/hotel?amazing-hotels=show"
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}
         title={{ type: 'double', first: 'هتل های', second: 'شگفت انگیز' }}

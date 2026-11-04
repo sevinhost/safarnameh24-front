@@ -33,7 +33,7 @@ export function MHotelCard(props: Props) {
   const startDate = searchParams.get('start-date');
   const passengers = searchParams.get('passengers');
 
-  const navigationLink = `/best-hotels/${slug}?start-date=${startDate}&end-date=${endDate}${passengers ? `&passengers=${passengers}` : ''}`;
+  const navigationLink = `/hotel/${slug}?start-date=${startDate}&end-date=${endDate}${passengers ? `&passengers=${passengers}` : ''}`;
 
   return (
     <Link href={navigationLink} className="bg-white rounded-xl shadow-light">

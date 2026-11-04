@@ -50,8 +50,8 @@ export default function CityOrHotel(props: Props) {
 
   const dispatch = useHotelOrCityDispatch();
 
-  const isBestHotel = pathname === '/best-hotels';
-  const isHotelDetail = pathname.startsWith('/best-hotels/');
+  const isBestHotel = pathname === '/hotel';
+  const isHotelDetail = pathname.startsWith('/hotel/');
 
   const { confirmedValue } = useHotelOrCityContext();
   const isDesktop = useMediaQuery('(min-width: 1024px)');

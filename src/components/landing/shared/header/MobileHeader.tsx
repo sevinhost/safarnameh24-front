@@ -38,7 +38,7 @@ export default function MobileHeader() {
 
   const noDisplayCondition = useMemo(() => {
     return (
-      pathname.includes('/best-hotels/') ||
+      pathname.includes('/hotel/') ||
       pathname === '/about-us' ||
       pathname === '/contact-us'
     );
@@ -76,7 +76,7 @@ export default function MobileHeader() {
         )}
       </div>
 
-      {pathname === '/best-hotels' && (
+      {pathname === '/hotel' && (
         <button
           onClick={() => router.back()}
           className="flex-center mr-auto h-9 w-9 cursor-pointer rounded-lg bg-zinc-200/60"

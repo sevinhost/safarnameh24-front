@@ -70,7 +70,7 @@ export function WatcherInfo() {
               </p>
 
               <Link
-                href={'/best-hotels'}
+                href={'/hotel'}
                 className="w-fit rounded-cs-10 bg-zinc-100 px-5 py-2 text-zinc-800"
               >
                 ثبت رزرو جدید

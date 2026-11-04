@@ -95,7 +95,7 @@ export default function CityOrHotelTrigger(props: Props) {
         ) : (
           <div className="flex flex-col items-start gap-y-3 text-cs08">
             <span className="text-cs08 font-extrabold text-zinc-800">
-              {pathname === '/best-hotels'
+              {pathname === '/hotel'
                 ? 'انتخاب شهر مقصد'
                 : 'انتخاب شهر یا هتل'}
             </span>
@@ -121,7 +121,7 @@ export default function CityOrHotelTrigger(props: Props) {
                 </div>
               ) : (
                 <span className="flex items-center gap-1.5 text-zinc-500">
-                  {pathname === '/best-hotels' ? (
+                  {pathname === '/hotel' ? (
                     <span>شهر مقصد</span>
                   ) : (
                     <span>شهر یا هتل</span>

@@ -26,8 +26,8 @@ export default function SearchBarContent(props: Props) {
   const pathname = usePathname();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
 
-  const isBestHotel = pathname === '/best-hotels';
-  const isHotelDetail = pathname.startsWith('/best-hotels/');
+  const isBestHotel = pathname === '/hotel';
+  const isHotelDetail = pathname.startsWith('/hotel/');
 
   return (
     <>
