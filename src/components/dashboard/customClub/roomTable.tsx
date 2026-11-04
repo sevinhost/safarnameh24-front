@@ -22,7 +22,7 @@ import TakeGiftRuleDialog from './dialog/takeGiftRuleDialog';
 import GiftGainErrorDialog from './dialog/giftGainErrorDialog';
 import GiftGainedDialog from './dialog/giftGainedDialogOpened';
 import { Skeleton } from '@/components/ui/skeleton';
-import SafarnameLogo from '../../../../public/image/logo/white.webp';
+import zarvantripLogo from '../../../../public/image/logo/white.webp';
 import CustomPagination from '../ui/customPagination';
 import EmptyTable from '../api/emptyTable';
 import useCustomerClubPoints from '@/hooks/dashboard/useCustomerClubPoints';
@@ -311,8 +311,8 @@ export default function RoomTable({
                         height={40}
                         src={
                           item.discount_type === 'hotel'
-                            ? item.hotel.main_image || SafarnameLogo.src
-                            : item.room.hotel_main_image || SafarnameLogo.src
+                            ? item.hotel.main_image || zarvantripLogo.src
+                            : item.room.hotel_main_image || zarvantripLogo.src
                         }
                         className="w-full h-full absolute top-0 left-0 object-cover"
                       />
@@ -402,8 +402,8 @@ export default function RoomTable({
                           }
                           src={
                             item.discount_type === 'hotel'
-                              ? item.hotel.main_image || SafarnameLogo.src
-                              : item.room.hotel_main_image || SafarnameLogo.src
+                              ? item.hotel.main_image || zarvantripLogo.src
+                              : item.room.hotel_main_image || zarvantripLogo.src
                           }
                           width={60}
                           height={60}

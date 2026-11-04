@@ -11,7 +11,7 @@ import { ICEmail, ICLocation, ICPhone } from '@/components/icons';
 
 export const footer = {
   logo: '/image/logo/full-red-gray.png',
-  title: 'Agency Safarname24 Hotel',
+  title: 'Agency zarvantrip Hotel',
   desc: `        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
         از طراحان گرافیک است. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
         صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم متن ساختگی با
@@ -20,7 +20,7 @@ export const footer = {
   copyright: 'تمامی حقوق این وبسایت متعلق به زروان تریپ میباشد .',
   communicationWays: {
     phone: { icon: <ICPhone />, value: '0912 345 6789' },
-    email: { icon: <ICEmail />, value: 'Safarname24@info.com' },
+    email: { icon: <ICEmail />, value: 'zarvantrip@info.com' },
     address: {
       icon: <ICLocation />,
       value: 'تهران، جردن خیابان مطهری، رو به رو بانک پارسیان',

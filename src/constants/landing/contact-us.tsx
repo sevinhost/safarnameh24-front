@@ -68,7 +68,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'تلگرام | Telegram',
-      link: 'te.safarname24.com',
+      link: 'te.zarvantrip.com',
       href: '/',
     },
     {
@@ -107,7 +107,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'اینستاگرام | Instagram',
-      link: 'insta.safarname24.com',
+      link: 'insta.zarvantrip.com',
       href: '',
     },
     {
@@ -138,7 +138,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'لینکدین  |  LinkedIn',
-      link: 'te.safarname24.com',
+      link: 'te.zarvantrip.com',
       href: '',
     },
     {
@@ -157,7 +157,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'توییتر  |  Twitter (X)',
-      link: 'twitter.safarname24.com',
+      link: 'twitter.zarvantrip.com',
       href: '',
     },
   ],

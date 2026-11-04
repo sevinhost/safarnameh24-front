@@ -11,7 +11,7 @@ export const axiosInstance = axios.create({
   baseURL:
     typeof window !== 'undefined'
       ? '/api/v1'
-      : 'https://cps.safarnameh24.com/api/v1',
+      : 'https://cps.zarvantriph24.com/api/v1',
   withCredentials: true,
 });
 
