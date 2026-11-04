@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 
@@ -20,27 +22,22 @@ type Request = {
   };
 };
 
-type Response = {
-  data: { tracking_code: string };
-};
-
 type Props = {
   roomId: number;
   hotelId: number;
   roomNumber: number;
-  checkAuth: () => boolean;
+  canBook?: boolean;        // ← فیلد جدید از بک‌اند
+  checkAuth?: () => boolean;
 };
 
 // -----------------------------
 
 export default function ReserveButton(props: Props) {
-  const { checkAuth, roomId, hotelId, roomNumber } = props;
+  const { roomId, hotelId, roomNumber, canBook = true } = props;
 
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const callReaction = useCallReactions();
-  // const isMultipleRoom = roomId.length > 1;
   const [isLoading, setLoading] = useState(false);
 
   const { mutate } = useMutation<any, AxiosError<any>, Request>({
@@ -51,8 +48,8 @@ export default function ReserveButton(props: Props) {
     onSuccess: (response) => {
       setLoading(false);
       const trackingCode =
-        response?.data?.data?.tracking_code ||
         response?.data?.tracking_code ||
+        response?.data?.data?.tracking_code ||
         (response as any)?.tracking_code;
 
       if (trackingCode) {
@@ -66,22 +63,36 @@ export default function ReserveButton(props: Props) {
     },
     onError: (error) => {
       setLoading(false);
-      if (error?.response?.status === 401) {
-        if (checkAuth) checkAuth();
-        return;
-      }
+
+      // پیام خطای استاندارد از بک‌اند
+      const errorData = error?.response?.data;
+      const errorMessage =
+        errorData?.detail ||
+        errorData?.error ||
+        (typeof errorData === 'object' && errorData?.code === 'no_availability'
+          ? 'این اتاق در بازه تاریخی انتخاب‌شده ظرفیت خالی ندارد.'
+          : null) ||
+        'عملیات رزرو با مشکلی روبرو شده است. لطفاً مجدداً تلاش فرمایید.';
+
       callReaction({
         type: 'error',
-        title: 'متاسفانه خطایی رخ داده است !',
-        description:
-          error?.response?.data?.error ??
-          error?.response?.data?.detail ??
-          'عملیات رزرو با مشکلی در سرور روبرو شده است',
+        title: 'امکان رزرو وجود ندارد',
+        description: errorMessage,
       });
     },
   });
 
   function handleClick() {
+    // اگر از بک‌اند گفته شده قابل رزرو نیست
+    if (!canBook) {
+      callReaction({
+        type: 'error',
+        title: 'ظرفیت تکمیل است',
+        description: 'این اتاق در بازه تاریخی انتخاب‌شده ظرفیت خالی ندارد. لطفاً تاریخ دیگری انتخاب کنید.',
+      });
+      return;
+    }
+
     const exitDate = searchParams.get('end-date');
     const enterDate = searchParams.get('start-date');
 
@@ -105,20 +116,28 @@ export default function ReserveButton(props: Props) {
     });
   }
 
+  // اگر قابل رزرو نباشد → دکمه غیرفعال + متن متفاوت
+  const isDisabled = isLoading || !canBook;
+
   return (
     <button
       onClick={handleClick}
-      className={`flex-center h-11 rounded-cs-10 text-cs08 ${false ? 'bg-cs-blue/10 font-extrabold text-cs-blue lg:w-32' : 'col-span-2 w-full bg-cs-dark-blue font-bold text-zinc-100'}`}
+      disabled={isDisabled}
+      className={`col-span-2 flex-center h-11 w-full rounded-cs-10 font-bold ${
+        canBook
+          ? 'bg-cs-dark-blue text-zinc-100'
+          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+      }`}
     >
       {isLoading ? (
         <span
           className={loader.dots}
-          style={{ '--dots-color': false ? '#4b5bce' : '#fff' } as CSSVars}
+          style={{ '--dots-color': '#fff' } as CSSVars}
         />
-      ) : false ? (
-        'رزرو اتاق ها'
-      ) : (
+      ) : canBook ? (
         'رزرو اتاق'
+      ) : (
+        'ظرفیت تکمیل'
       )}
     </button>
   );

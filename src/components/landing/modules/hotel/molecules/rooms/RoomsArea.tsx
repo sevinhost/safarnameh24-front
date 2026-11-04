@@ -1,14 +1,13 @@
+'use client';
+
 import NormalRoom from './NormalRoom';
 import PackedRoom from './PackedRoom';
-import { useCheckAuth } from '@/hooks';
 
 import { Room } from '@/types/landing';
 import { Warning2 } from 'iconsax-react';
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
-import { AuthGuardReaction } from '../favorite-button/AuthGuardReaction';
 
-type PackedRoom = {
+type PackedRoomType = {
   room_count: number;
   pack_rooms: Room[];
   night_count: number;
@@ -16,7 +15,7 @@ type PackedRoom = {
 };
 
 type Props = {
-  data?: Room[] | PackedRoom[];
+  data?: Room[] | PackedRoomType[];
   status: 'error' | 'success' | 'pending';
 };
 
@@ -25,9 +24,7 @@ type Props = {
 export default function RoomsArea(props: Props) {
   const { data, status } = props;
 
-  const { isAuthenticated } = useCheckAuth();
   const [visibleCount, setVisibleCount] = useState(0);
-  const [authReactionOpen, setAuthReactionOpen] = useState(false);
 
   const isNormalRooms =
     Array.isArray(data) && data.every((item) => 'capacity' in item);
@@ -36,20 +33,8 @@ export default function RoomsArea(props: Props) {
     setVisibleCount(isNormalRooms ? 8 : 4);
   }, [data, isNormalRooms]);
 
+  // چک لاگین دیگر کاربر را در این مرحله بلاک نمی‌کند و مستقیم رد می‌کند
   function handleCheckAuth(): boolean {
-    const hasToken =
-      typeof window !== 'undefined' &&
-      Boolean(
-        localStorage.getItem('access_token') ||
-          localStorage.getItem('token') ||
-          Cookies.get('auth') ||
-          Cookies.get('AUTH')
-      );
-
-    if (!isAuthenticated && !hasToken) {
-      setAuthReactionOpen(true);
-      return false;
-    }
     return true;
   }
 
@@ -87,7 +72,7 @@ export default function RoomsArea(props: Props) {
               checkAuth={handleCheckAuth}
             />
           ) : (
-            <NormalRoom key={index} room={room} checkAuth={handleCheckAuth} />
+            <NormalRoom key={index} room={room as Room} checkAuth={handleCheckAuth} />
           ),
         )}
 
@@ -101,11 +86,6 @@ export default function RoomsArea(props: Props) {
           مشاهده بیشتر
         </button>
       )}
-
-      <AuthGuardReaction
-        isOpen={authReactionOpen}
-        setOpen={setAuthReactionOpen}
-      />
     </div>
   );
 }

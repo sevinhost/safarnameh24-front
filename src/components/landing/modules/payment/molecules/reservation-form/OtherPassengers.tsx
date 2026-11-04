@@ -55,12 +55,12 @@ export function OtherPassengers(props: Props) {
           className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-5"
         >
           <Input
-            placeholder="* نام مسافر"
+            placeholder=" نام مسافر"
             name={`rooms.${roomIndex}.passengers.other_passengers.${idx}.first_name`}
           />
 
           <Input
-            placeholder="* نام خانوادگی"
+            placeholder="نام خانوادگی"
             name={`rooms.${roomIndex}.passengers.other_passengers.${idx}.last_name`}
           />
 

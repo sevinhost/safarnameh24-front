@@ -3,6 +3,7 @@
 import { CSSVars } from '@/types/landing';
 import { ArrowLeft } from 'iconsax-react';
 import { axiosInstance } from '@/utils/axios';
+import { AxiosError } from 'axios';
 
 import loader from '@/styles/loader.module.css';
 import { payment } from '../../helpers/constant';
@@ -28,39 +29,59 @@ export function SecondStepSubmitButton() {
   const router = useRouter();
   const { status } = useReservationStatus(trackingCode);
 
-  const { mutate, status: mutateStatus } = useMutation<ApiResponse>({
+  const { mutate, status: mutateStatus } = useMutation<
+    ApiResponse,
+    AxiosError<any>
+  >({
     mutationFn: () => {
       return axiosInstance.post(`/payment/reservation-check/${trackingCode}/`);
     },
-    onSuccess: (data) => {
-      const res = data?.data;
-      // console.log(res);
+    onSuccess: (response: any) => {
+      const res = response?.data?.data || response?.data;
 
-      res.ok
-        ? router.push(res.payment_link)
-        : router.push(
-            `/payment/watcher-info?${payment.reservationId}=${trackingCode}`,
-          );
+      if (res?.ok && res?.payment_link) {
+        // برای لینک‌های بانکی و شاپرک، انتقال با تغییر لوکیشن مرورگر الزامی است
+        if (
+          res.payment_link.startsWith('http://') ||
+          res.payment_link.startsWith('https://')
+        ) {
+          window.location.href = res.payment_link;
+        } else {
+          router.push(res.payment_link);
+        }
+      } else {
+        router.push(
+          `/payment/watcher-info?${payment.reservationId}=${trackingCode}`,
+        );
+      }
     },
     onError: (error) => {
-      // console.log(error);
+      // استخراج پیام خطا از تمام کلیدهای ارسالی بک‌اند (message, detail, error)
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.response?.data?.detail ||
+        error?.response?.data?.error ||
+        'متاسفانه در اتصال به درگاه پرداخت خطایی رخ داده است.';
 
       showCMToast({
-        type: 'success',
-        title: '',
-        description: '',
+        type: 'error',
+        title: 'خطا در پرداخت',
+        description: errorMsg,
       });
     },
   });
+
+  const isLoading =
+    mutateStatus === 'pending' || (mutateStatus as any) === 'loading';
 
   return (
     <>
       <button
         onClick={() => mutate()}
-        disabled={status !== 'confirmed' || mutateStatus === 'pending'}
+        disabled={status !== 'confirmed' || isLoading}
         className="h-12 w-full rounded-cs-10 bg-cs-dark-blue disabled:cursor-not-allowed disabled:opacity-90"
       >
-        {mutateStatus === 'pending' ? (
+        {isLoading ? (
           <div className="full-size flex-center">
             <div
               className={loader.dots}
