@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { numberSeparation } from '@/utils';
 import { useSearchParams } from 'next/navigation';
-import { Hotel } from '@/types/landing/best-hotels';
+import { Hotel } from '@/types/landing/hotels';
 
 type Props = Hotel;
 

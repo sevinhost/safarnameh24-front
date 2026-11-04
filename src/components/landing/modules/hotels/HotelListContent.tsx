@@ -2,7 +2,7 @@ import { Pagination } from './Pagination';
 import { TopBarConfig } from '../../shared';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { Hotel } from '@/types/landing/best-hotels';
+import { Hotel } from '@/types/landing/hotels';
 
 import HotelNotFound from './molecules/hotel-not-found';
 import { DHotelCard, MHotelCard } from './molecules/hotel-card';

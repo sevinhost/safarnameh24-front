@@ -7,4 +7,4 @@ export * from './footer';
 export * from './about-us';
 export * from './contact-us';
 export * from './date-picker';
-export * from './best-hotels';
+export * from './hotels';

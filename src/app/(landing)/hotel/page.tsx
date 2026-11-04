@@ -5,7 +5,7 @@ import {
   HotelList,
   AmazingHotels,
   SuggestedHotels,
-} from '@/components/landing/modules/best-hotels';
+} from '@/components/landing/modules/hotels'; // ✅ با حرف s اصلاح شد
 
 import { Suspense } from 'react';
 import StickyArea from '@/components/landing/shared/StickyArea';
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   description: 'مجموعه‌ای از بهترین هتل‌های داخلی و خارجی را در زروان تریپ ببینید. مقایسه امکانات، قیمت و رزرو آنلاین هتل‌های خیلی خوب با تخفیف ویژه و واچر آنی.',
   keywords: ['رزرو هتل', 'لیست هتل ها', 'بهترین هتل ها', 'هتل خیلی خوب', 'رزرو آنلاین هتل', 'هتل های ارزان', 'ZarvanTrip'],
   alternates: {
-    canonical: 'https://zarvantrip.com/best-hotels',
+    canonical: 'https://zarvantrip.com/hotel',
   },
   openGraph: {
     title: 'جستجو و رزرو بهترین هتل‌ها | زروان تریپ',
     description: 'انتخاب از میان هزاران هتل برتر. همین حالا هتل مورد نظر خود را با بهترین قیمت رزرو کنید.',
-    url: 'https://zarvantrip.com/best-hotels',
+    url: 'https://zarvantrip.com/hotel',
     type: 'website',
   },
 };
@@ -29,11 +29,6 @@ export const metadata: Metadata = {
 export default function BestHotels() {
   return (
     <>
-      {/* 
-        نکته سئو: برای این صفحه حتما یک تگ H1 در بالای صفحه 
-        (مثلا در کامپوننت Setting یا بالاتر از آن) قرار دهید 
-        با عنوان: <h1>رزرو آنلاین بهترین هتل‌ها</h1>
-      */}
       <div className="mt-2">
         <StickyArea
           childrenStatus={{ static: true, fixed: true }}

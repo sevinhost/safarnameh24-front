@@ -68,7 +68,7 @@
 //   const { data, status } = useQuery<ApiResponse>({
 //     queryKey: ['hotel-list', queryString],
 //     queryFn: () =>
-//       axiosInstance(`/hotel/best-hotels/best-filter?${queryString}`),
+//       axiosInstance(`/hotel/hotels/best-filter?${queryString}`),
 //   });
 
 //   // === Update query-state context
@@ -230,7 +230,7 @@ export function HotelList() {
   // ۲. فراخوانی API با نگه‌داشتن دیتای قبلی حین لودینگ
   const { data, status, isFetching } = useQuery<ApiResponse>({
     queryKey: ['hotel-list', queryString],
-    queryFn: () => axiosInstance(`/hotel/best-hotels/best-filter?${queryString}`),
+    queryFn: () => axiosInstance(`/hotel/hotels/best-filter?${queryString}`),
     // جلوگیری از خالی شدن دیتا هنگام تعویض فیلتر (جلوگیری از پرش کامپوننت‌ها):
     placeholderData: (previousData) => previousData,
   });

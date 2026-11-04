@@ -1,7 +1,6 @@
 'use client';
 
 import { useMediaQuery } from '@/hooks';
-import { bestHotels } from '@/constants/landing';
 
 import {
   Dialog,
@@ -25,21 +24,29 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+// متن‌های پیام افزودن یا حذف از علاقه‌مندی‌ها
+const reactionContent = {
+  saved: {
+    title: 'به علاقه‌مندی‌ها افزوده شد',
+    desc: 'این هتل با موفقیت به لیست علاقه‌مندی‌های شما اضافه شد.',
+  },
+  unsaved: {
+    title: 'از علاقه‌مندی‌ها حذف شد',
+    desc: 'این هتل با موفقیت از لیست علاقه‌مندی‌های شما حذف شد.',
+  },
+  fail: {
+    title: 'خطا در انجام عملیات',
+    desc: 'متاسفانه مشکلی در ثبت پیش آمده است. لطفاً مجدداً تلاش فرمایید.',
+  },
+};
+
 // ---------------------------------------
 
 export default function FavoriteHotelReaction(props: Props) {
   const { isOpen, setOpen, reactionType } = props;
-  const {
-    favoriteHotelReaction: { saved, unsaved, fail },
-  } = bestHotels;
+  const content = reactionContent[reactionType] || reactionContent.fail;
 
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  const content =
-    reactionType === 'saved'
-      ? saved
-      : reactionType === 'unsaved'
-        ? unsaved
-        : fail;
 
   return (
     <>
