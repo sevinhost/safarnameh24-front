@@ -4,6 +4,7 @@ import {
   DatePickerProvider,
   PassengersProvider,
   HotelOrCityProvider,
+  HotelQueryProvider,
 } from '@/context';
 
 import { ToastContainer } from 'react-toastify';
@@ -12,7 +13,6 @@ import { Suspense, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import AuthHandler from './AuthHandler';
-import { HotelQueryProvider } from '@/context';
 import { Toaster } from '@/components/ui/sooner';
 import { generalInstance } from '@/utils/services';
 
@@ -21,7 +21,10 @@ import { UserAccountProvider } from '@/context/UserAccountContext';
 import { ComingSoon } from '@/components/landing/modules/coming-soon';
 
 type ApiResponse = {
-  data: { data: { is_active: boolean } };
+  data?: {
+    is_active?: boolean;
+    data?: { is_active?: boolean };
+  };
 };
 
 type Props = {
@@ -40,8 +43,11 @@ export default function MainWrapper(props: Props) {
         defaultOptions: {
           queries: {
             retry: 1,
-            // staleTime: 1000 * 60 * 5,
-            refetchOnWindowFocus: false,
+            staleTime: 1000 * 60 * 5, // دیتا تا ۵ دقیقه تازه در نظر گرفته شود (جلوگیری از فچ و لودینگ مجدد)
+            gcTime: 1000 * 60 * 15,   // نگه‌داری دیتا در رم تا ۱۵ دقیقه (کش طولانی‌مدت)
+            refetchOnWindowFocus: false, // جلوگیری از لودینگ مجدد با هر بار کلیک کاربر روی تب مرورگر
+            refetchOnMount: false,    // اگر دیتا در کش هست، هنگام برگشت به صفحه لودینگ نزند
+            refetchOnReconnect: false, // جلوگیری از ریکوئست‌های ناگهانی با قطع و وصل اینترنت
           },
         },
       })
@@ -49,18 +55,31 @@ export default function MainWrapper(props: Props) {
 
   // === Check Activate-Status
   useEffect(() => {
+    let isMounted = true;
+
     (async () => {
       try {
         const response: ApiResponse = await generalInstance(
           '/config/coming-soon/',
         );
 
-        setActive(response?.data?.data?.is_active || false);
+        // بررسی ایمن ساختار خروجی بدون احتمال بروز کرش
+        const activeStatus =
+          response?.data?.data?.is_active ??
+          response?.data?.is_active ??
+          false;
+
+        if (isMounted) {
+          setActive(Boolean(activeStatus));
+        }
       } catch (error) {
-        // Log error but allow app to render normally
         console.warn('Coming soon config check failed:', error);
       }
     })();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

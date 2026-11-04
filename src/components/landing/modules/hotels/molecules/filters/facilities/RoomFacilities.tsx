@@ -11,8 +11,13 @@ import FacilitiesItem from './FacilitiesItem';
 import { useQuery } from '@tanstack/react-query';
 import { generalInstance } from '@/utils/services';
 
+type Facility = {
+  id: number;
+  title: string;
+};
+
 type ApiResponse = {
-  data: { id: number; title: string }[];
+  data: Facility[];
 };
 
 // ------------------------------
@@ -20,10 +25,17 @@ type ApiResponse = {
 export function RoomFacilities() {
   const [input, setInput] = useState('');
 
-  const { data } = useQuery<ApiResponse>({
+  const { data, isLoading } = useQuery<ApiResponse | Facility[]>({
     queryKey: ['room-facilities'],
     queryFn: () => generalInstance('hotel/hotels/room-facilities'),
   });
+
+  // استخراج آرایه با اطمینان از هر دو ساختار ممکن (چه data.data باشد و چه مستقیماً خود data)
+  const facilities: Facility[] = Array.isArray((data as ApiResponse)?.data)
+    ? (data as ApiResponse).data
+    : Array.isArray(data)
+    ? (data as Facility[])
+    : [];
 
   return (
     <AccordionItem value="room-facilities" className="px-5">
@@ -49,13 +61,17 @@ export function RoomFacilities() {
 
         {/* === List */}
         <div className="max-h-60 overflow-auto custom-scrollbar">
-          {data?.data
-            .filter((item) =>
-              item.title.toLowerCase().includes(input.trim().toLowerCase()),
-            )
-            ?.map((item) => (
-              <FacilitiesItem key={item.id} {...item} type="room" />
-            ))}
+          {isLoading ? (
+            <p className="text-xs text-zinc-400 py-2">در حال دریافت امکانات...</p>
+          ) : (
+            facilities
+              .filter((item) =>
+                item?.title?.toLowerCase().includes(input.trim().toLowerCase())
+              )
+              .map((item) => (
+                <FacilitiesItem key={item.id} {...item} type="room" />
+              ))
+          )}
         </div>
       </AccordionContent>
     </AccordionItem>

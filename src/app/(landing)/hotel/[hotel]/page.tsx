@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { cache, Suspense } from 'react';
 import { apiBaseUrl } from '@/constants';
 import { hotel } from '@/constants/landing';
 
-// ایمپورت‌های کامپوننت‌های شما
+// ایمپورت‌های کامپوننت‌ها
 import { 
   Tags, Rooms, Pictures, Facilities, Description, SectionLinks, 
   EssentialTips, ImportantPlaces, CustomerReviews, SuggestedHotels, 
@@ -21,50 +22,92 @@ import DImageGallery from '@/components/landing/modules/hotel/molecules/pictures
 
 type Props = { params: Promise<{ hotel: string }> };
 
-// 1. دریافت دیتای سئو برای متادیتا
+// ۱. فچ کش‌شده سئو (جلوگیری از ریکوئست‌های تکراری)
+const getHotelSeo = cache(async (hotelSlug: string) => {
+  try {
+    const res = await fetch(`${apiBaseUrl}/hotel/seo/${hotelSlug}/`, {
+      next: { revalidate: 3600 }, // کش ۱ ساعته ISR برای سرعت فوق‌العاده
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+});
+
+// ۲. فچ کش‌شده اطلاعات پایه هتل
+const getHotelIntroduction = cache(async (hotelSlug: string) => {
+  try {
+    const res = await fetch(`${apiBaseUrl}/hotel/hotels/${hotelSlug}/introduction/`, {
+      next: { revalidate: 3600 }, // کش ۱ ساعته
+    });
+    if (res.status === 404) return null;
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+});
+
+// ۳. تولید متادیتای صفحه
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { hotel: hotelSlug } = await params;
-  try {
-    const res = await fetch(`${apiBaseUrl}/hotel/seo/${hotelSlug}/`, { cache: 'no-store' });
-    if (!res.ok) return { title: 'هتل در زروان تریپ' };
-    const seo = await res.json();
+  const seo = await getHotelSeo(hotelSlug);
+
+  if (!seo) {
     return {
-      title: seo.title_tag,
-      description: seo.description,
-      keywords: seo.keywords, // آرایه‌ای که از جنگو می‌آید
-      robots: { index: !seo.no_index, follow: !seo.no_index },
-      alternates: { canonical: seo.canonical_url },
-      openGraph: {
-        title: seo.og_title,
-        description: seo.og_description,
-        images: seo.og_image ? [seo.og_image] : [],
-        type: 'website',
-      },
+      title: 'رزرو هتل در زروان تریپ',
+      description: 'بهترین قیمت رزرو آنلاین هتل در زروان تریپ با پشتیبانی ۲۴ ساعته',
     };
-  } catch {
-    return { title: 'زروان تریپ' };
   }
+
+  return {
+    title: seo.title_tag,
+    description: seo.description,
+    keywords: Array.isArray(seo.keywords) ? seo.keywords : [],
+    robots: {
+      index: !seo.no_index,
+      follow: !seo.no_index,
+    },
+    alternates: {
+      canonical: seo.canonical_url || `https://zarvantrip.com/hotel/${hotelSlug}`,
+    },
+    openGraph: {
+      title: seo.og_title || seo.title_tag,
+      description: seo.og_description || seo.description,
+      images: seo.og_image ? [{ url: seo.og_image }] : [],
+      type: 'website',
+      locale: 'fa_IR',
+    },
+  };
 }
 
 export default async function Hotel({ params }: Props) {
   const { hotel: hotelSlug } = await params;
-  const { sectionLinks } = hotel;
+  const sectionLinks = hotel?.sectionLinks || [];
 
-  // 2. دریافت دیتای اصلی هتل برای محتوا و اسکیما
-  const res = await fetch(`${apiBaseUrl}/hotel/hotels/${hotelSlug}/introduction/`, { cache: 'no-store' });
-  if (res.status === 404) notFound();
-  const hotelData = await res.json();
+  // دریافت اطلاعات پایه هتل
+  const hotelData = await getHotelIntroduction(hotelSlug);
+  if (!hotelData) {
+    notFound();
+  }
 
-  // 3. تعریف اسکیما برای ستاره‌دار شدن در گوگل
+  // تعریف اسکیما غنی‌شده برای گوگل
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
-    'name': hotelData.name,
-    'description': hotelData.description || `رزرو هتل ${hotelData.name} در زروان تریپ`,
-    'address': {
+    name: hotelData.name,
+    description: hotelData.description || `رزرو هتل ${hotelData.name} در زروان تریپ`,
+    starRating: {
+      '@type': 'Rating',
+      ratingValue: hotelData.stars || 3,
+    },
+    address: {
       '@type': 'PostalAddress',
-      'addressLocality': hotelData.city_name || 'ایران',
-    }
+      addressLocality: hotelData.city_name || 'ایران',
+      streetAddress: hotelData.address || '',
+    },
+    ...(hotelData.logo_preview ? { image: hotelData.logo_preview } : {}),
   };
 
   return (
@@ -76,13 +119,24 @@ export default async function Hotel({ params }: Props) {
       />
 
       <HotelWrapper>
-        <StickyArea scrollFromTop={500} fixedClassName="pb-0" staticClassName="mt-5" childrenStatus={{ fixed: true }} searchbarStatus={{ static: true, fixed: true }}>
-          <div className="-mx-5 -mt-3"><SectionLinks sectionList={sectionLinks} /></div>
+        {/* نوار ناوبری چسبان */}
+        <StickyArea
+          scrollFromTop={500}
+          fixedClassName="pb-0"
+          staticClassName="mt-5"
+          childrenStatus={{ fixed: true }}
+          searchbarStatus={{ static: true, fixed: true }}
+        >
+          <div className="-mx-5 -mt-3">
+            <SectionLinks sectionList={sectionLinks} />
+          </div>
         </StickyArea>
 
         <div className="relative mt-5 flex flex-col gap-14 lg:mt-12 lg:gap-20">
+          {/* تصاویر اصلی */}
           <Pictures hotelSlug={hotelSlug} />
 
+          {/* اکشن‌های موبایل */}
           <div className="relative -my-8 flex h-16 gap-3 rounded-xl bg-white p-2.5 shadow-xl shadow-black/5 lg:hidden">
             <FavoriteButton hotelSlug={hotelSlug} />
             <div className="grid flex-1 grid-cols-2 gap-3 sm:mr-auto sm:w-60 sm:flex-none">
@@ -96,8 +150,10 @@ export default async function Hotel({ params }: Props) {
             <SectionLinks sectionList={sectionLinks} />
           </div>
 
+          {/* پیکربندی و سرچ‌بار هتل */}
           <Configs hotelSlug={hotelSlug} sectionList={sectionLinks} />
 
+          {/* توضیحات و اطلاعات اولیه */}
           <div>
             <TopBarConfig className="mb-1 lg:mb-2" title={{ type: 'single', text: 'توضیحات هتل' }} />
             <div id="description" className="grid items-start gap-12 lg:grid-cols-2">
@@ -106,7 +162,9 @@ export default async function Hotel({ params }: Props) {
             </div>
           </div>
 
+          {/* لیست اتاق‌ها */}
           <Rooms hotelSlug={hotelSlug} />
+
           <AdditionalDetails hotelSlug={hotelSlug} />
 
           <Section sectionID="rules" className="grid items-start gap-8 lg:grid-cols-2">
@@ -114,12 +172,22 @@ export default async function Hotel({ params }: Props) {
             <EssentialTips hotelSlug={hotelSlug} />
           </Section>
 
-          <ImportantPlaces hotelSlug={hotelSlug} />
           <Facilities hotelSlug={hotelSlug} />
+
+          <ImportantPlaces hotelSlug={hotelSlug} />
+
           <FrequentlyQuestions hotelSlug={hotelSlug} />
-          <CustomerReviews hotelSlug={hotelSlug} />
+
+          {/* بخش‌های سنگین‌تر پایین صفحه به صورت استریمینگ لود می‌شوند تا مانع لود اولیه نشوند */}
+          <Suspense fallback={<div className="h-40 w-full animate-pulse rounded-2xl bg-zinc-100" />}>
+            <CustomerReviews hotelSlug={hotelSlug} />
+          </Suspense>
+
           <Tags hotelSlug={hotelSlug} />
-          <SuggestedHotels hotelSlug={hotelSlug} />
+
+          <Suspense fallback={<div className="h-40 w-full animate-pulse rounded-2xl bg-zinc-100" />}>
+            <SuggestedHotels hotelSlug={hotelSlug} />
+          </Suspense>
         </div>
       </HotelWrapper>
     </>

@@ -12,66 +12,92 @@ type Props = {
   data?: Hotel[];
   totalPages?: number;
   status: 'error' | 'success' | 'pending';
-  isFetching?: boolean; // ۱. اضافه شدن پراپ
+  isFetching?: boolean;
 };
 
 // ------------------------------
 
 export function HotelListContent(props: Props) {
-  const { data, status, city, totalPages, isFetching } = props;
+  const { data, status, city, totalPages, isFetching = false } = props;
 
-  // ۲. تعریف وضعیت لودینگ (چه در اولین لود چه حین تغییر فیلترها)
-  const isLoading = status === 'pending' || isFetching;
+  // ۱. تفکیک لود اولیه از آپدیت‌های پس‌زمینه فیلترها
+  // اسکلتون فقط زمانی نشان داده می‌شود که هیچ دیتایی روی صفحه نباشد
+  const isInitialLoading = status === 'pending' && (!data || data.length === 0);
+  const isUpdating = isFetching && !!data && data.length > 0;
 
-  if (!isLoading && (!data || !data?.length)) {
+  // ۲. نمایش حالت خالی بودن یا خطا (تنها در صورتی که دیتایی نباشد و در حال لود هم نباشد)
+  if (!isInitialLoading && (!data || data.length === 0)) {
     return (
-      <>
+      <div>
         <TopBarConfig
           className="mb-3"
           title={{
             type: 'single',
-            text: `هتل های شهر ${city ? city : 'های مختلف ایران'}`,
+            text: `هتل‌های ${city ? `شهر ${city}` : 'شهرهای مختلف ایران'}`,
           }}
         />
 
         <HotelNotFound />
-      </>
+      </div>
     );
   }
 
   return (
-    <div>
+    <div className="relative">
       <TopBarConfig
         className="mb-3"
         title={{
           type: 'single',
-          text: `هتل های شهر ${city ? city : 'های مختلف ایران'}`,
+          text: `هتل‌های ${city ? `شهر ${city}` : 'شهرهای مختلف ایران'}`,
         }}
       />
 
-      {/* === Small-Screen */}
-      <div className="grid gap-6 md:grid-cols-2 xl:hidden">
-        {isLoading
+      {/* ۳. حالت موبایل و تبلت (Small-Screen) */}
+      <div
+        className={`grid gap-6 md:grid-cols-2 xl:hidden transition-opacity duration-200 ${
+          isUpdating ? 'opacity-50 pointer-events-none' : 'opacity-100'
+        }`}
+      >
+        {isInitialLoading
           ? Array(8)
               .fill(null)
-              .map((_, index) => (
-                <Skeleton key={index} className="h-[23.5rem] rounded-xl" />
+              .map((_, i) => (
+                <Skeleton key={i} className="h-[23.5rem] w-full rounded-xl bg-zinc-200/70" />
               ))
-          : data?.map((hotel, index) => <MHotelCard key={index} {...hotel} />)}
+          : data?.map((hotel, index) => (
+              <MHotelCard
+                key={hotel.slug || (hotel as any).id || index}
+                {...hotel}
+                index={index} // فعال‌سازی لود با اولویت تصویر برای ۲ کارت اول
+              />
+            ))}
       </div>
 
-      {/* === Large-Screen */}
-      <div className="hidden gap-6 xl:grid">
-        {isLoading
+      {/* ۴. حالت دسکتاپ (Large-Screen) */}
+      <div
+        className={`hidden gap-6 xl:grid transition-opacity duration-200 ${
+          isUpdating ? 'opacity-50 pointer-events-none' : 'opacity-100'
+        }`}
+      >
+        {isInitialLoading
           ? Array(8)
               .fill(null)
-              .map((_, index) => (
-                <Skeleton key={index} className="h-[14rem] rounded-2xl" />
+              .map((_, i) => (
+                <Skeleton key={i} className="h-[14rem] w-full rounded-2xl bg-zinc-200/70" />
               ))
-          : data?.map((hotel, index) => <DHotelCard key={index} {...hotel} />)}
+          : data?.map((hotel, index) => (
+              <DHotelCard
+                key={hotel.slug || (hotel as any).id || index}
+                {...hotel}
+                index={index} // فعال‌سازی لود با اولویت تصویر برای ۲ کارت اول
+              />
+            ))}
       </div>
 
-      <Pagination pageCount={totalPages} />
+      {/* ۵. صفحه‌بندی */}
+      <div className="mt-8">
+        <Pagination pageCount={totalPages} />
+      </div>
     </div>
   );
 }
