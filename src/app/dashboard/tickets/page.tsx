@@ -246,7 +246,7 @@ export default function TicketsPage(): ReactNode {
             color="currentColor"
           />
           <span className="mb-2 block truncate text-center text-cs95 font-bold text-current">
-            در حال اتصال به تیکت سفرنامه ۲۴ ۲۴
+            در حال اتصال به تیکت سفرنامه 24 ۲۴
           </span>
           <span className="text-current/50 mb-5 block truncate text-center text-cs85 font-medium">
             لطفا منتظر بمانید...

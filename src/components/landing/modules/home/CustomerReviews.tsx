@@ -42,7 +42,7 @@ export function CustomerReviews() {
     <div className="-mb-4 -ml-5 lg:ml-0">
       <TopBarConfig
         arraylength={data?.data.length}
-        subtitle="نظرات محبت آمیز مشتری های سفرنامه ۲۴"
+        subtitle="نظرات محبت آمیز مشتری های سفرنامه 24"
         title={{ type: 'single', text: 'نظرات مشتریان' }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}

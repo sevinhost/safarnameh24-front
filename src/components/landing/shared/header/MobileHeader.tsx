@@ -52,7 +52,7 @@ export default function MobileHeader() {
       <div className="flex items-center gap-3">
         <Link
           href={'/'}
-          className="flex-center h-16 w-16 overflow-hidden rounded-lg"
+          className="flex-center size-16 p-1 overflow-hidden rounded-lg"
         >
           <Image
             src={logo}

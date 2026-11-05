@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/drawer';
 
 import { useMediaQuery } from '@/hooks';
-import { bestHotels } from '@/constants/landing';
+import { hotel } from '@/constants/landing';
 
 type Props = {
   isOpen: boolean;

@@ -14,16 +14,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy on safarnameh24 Server
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.SERVER_IP_safarnameh24 }}
-          username: ${{ secrets.SERVER_USER_safarnameh24 }}
-          port: 22 # 👈 پورت سرور زروان‌تریپ ۲۲ است
-          key: ${{ secrets.SSH_PRIVATE_KEY_safarnameh24 }}
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          port: 22 # 👈 
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 120s # افزایش مهلت اتصال شبکه
+          command_timeout: 30m # مهلت برای فرآیند بیلد داکر
           script: |
             echo "🚀 Connected to safarnameh24 server"
 
-            cd /var/safarname24front
+            cd /var/www/safarnameh24-front
 
             NEW_TAG=$(date +%s)
 
@@ -31,14 +33,14 @@ jobs:
             git pull
 
             echo "🔧 Building new Docker image..."
-            docker build -t safarname24front:$NEW_TAG .
+            docker build -t safarnameh24front:$NEW_TAG .
 
             echo "🛑 Stopping old container..."
-            docker stop safarname24front_old || true
-            docker rm safarname24front_old || true
+            docker stop safarnameh24front_old || true
+            docker rm safarnameh24front_old || true
 
             echo "🚀 Starting new container on port 3000..."
-            docker run -d --name safarname24front_old -p 3000:3000 --restart always safarname24front:$NEW_TAG
+            docker run -d --name safarnameh24front_old -p 3000:3000 --restart always safarnameh24front:$NEW_TAG
 
             echo "⏳ Waiting for health check..."
             sleep 10

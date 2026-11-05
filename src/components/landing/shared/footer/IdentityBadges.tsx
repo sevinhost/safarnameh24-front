@@ -16,31 +16,34 @@ type Enamad = {
   code: string;
 };
 
+type ApiResponse = [{ data: License[] }, { data: Enamad }];
+
+// ----------------------------------------
+
 export default function IdentityBadges() {
   const licesnsesQuery = useQuery<License[]>({
     queryKey: ["licenses"],
     queryFn: async () => {
       const response = await generalInstance.get('/config/licenses/');
-      // اگر پاسخ API شما دارای یک فیلد میانی است (مثلاً data یا results)، 
-      // آن را اینجا اصلاح کنید. اگر مستقیماً آرایه است، همین response.data کافیست.
-      return Array.isArray(response.data) ? response.data : (response.data?.results || []);
+
+      return response.data; // Data array in api response
     }
   });
 
   const enamadQuery = useQuery<Enamad>({
     queryKey: ["enamad"],
-    enabled: !!licesnsesQuery.data, // وابستگی به موفقیت کوئری قبلی
+    enabled: !licesnsesQuery.isPending && licesnsesQuery.data && !licesnsesQuery.isError,
     queryFn: async () => {
       const response = await generalInstance.get('/config/enamad/');
-      return response.data;
+
+      return response.data; // Data object in api response
     }
   });
 
+
   const pending = licesnsesQuery.isPending || enamadQuery.isPending;
   const isError = licesnsesQuery.isError || enamadQuery.isError;
-  
-  // بررسی امن برای داده‌ها
-  const licenses = Array.isArray(licesnsesQuery.data) ? licesnsesQuery.data : [];
+  const success = !pending && !isError && licesnsesQuery.data && enamadQuery.data;
 
   if (pending) {
     return (
@@ -51,33 +54,41 @@ export default function IdentityBadges() {
             <Skeleton key={index} className="flex-1" />
           ))}
       </div>
+
     );
-  }
-
-  if (isError) return null;
-
-  return (
-    <div className="w-full mt-4 mb-2 grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-4 lg:grid-cols-3">
-      {licenses.map((badge, index) => (
-        <div
-          key={index}
-          className="bg-zinc-100 h-28 p-4 flex-center overflow-hidden rounded-cs-10"
-        >
-          <Image
-            width={200}
-            height={200}
-            src={badge.image}
-            alt="identity-badge"
-            className="full-size object-contain"
-          />
-        </div>
-      ))}
-      
-      {enamadQuery.data?.code && (
+  } else if (success) {
+    return (
+      <div className="w-full mt-4 mb-2 grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-4 lg:grid-cols-3">
+        {licesnsesQuery.data.map(
+          (badge, index) => (
+            // badge.link && (
+            //   <Link
+            //     key={index}
+            //     href={badge.link}
+            //     className="bg-zinc-100 h-28 p-4 flex-center overflow-hidden rounded-cs-10"
+            //   >
+            <div
+              key={index}
+              className="bg-zinc-100 h-28 p-4 flex-center overflow-hidden rounded-cs-10"
+            >
+              <Image
+                width={200}
+                height={200}
+                src={badge.image}
+                alt="identity-badge"
+                className="full-size object-contain"
+              />
+            </div>
+          ),
+          //   </Link>
+          // ),
+        )}
         <div
           dangerouslySetInnerHTML={{ __html: enamadQuery.data.code }}
         />
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return false;
+  }
 }

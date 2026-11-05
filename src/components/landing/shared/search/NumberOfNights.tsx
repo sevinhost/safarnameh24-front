@@ -11,7 +11,13 @@ export default function NumberOfNights(props: Props) {
   const { type } = props;
 
   const { confirmedValue } = useDatePickerContext();
-  const numberOfNights = useNumberOfNights(confirmedValue);
+  const rawNumberOfNights = useNumberOfNights(confirmedValue);
+
+  // اطمینان از اینکه عدد معتبر است و NaN نیست
+  const numberOfNights =
+    typeof rawNumberOfNights === 'number' && !Number.isNaN(rawNumberOfNights) && rawNumberOfNights > 0
+      ? rawNumberOfNights
+      : 0;
 
   return (
     <>
@@ -24,7 +30,7 @@ export default function NumberOfNights(props: Props) {
           <div
             className={`h-full px-4 mr-auto flex-center gap-1 rounded-md ${numberOfNights > 0 ? 'bg-cs-red/10 text-cs-red' : 'bg-zinc-200 text-zinc-600'}`}
           >
-            <span>{numberOfNights}</span>
+            <span>{numberOfNights > 0 ? numberOfNights : '-'}</span>
             <span>شب</span>
           </div>
         </div>
@@ -52,7 +58,7 @@ export default function NumberOfNights(props: Props) {
               <span>مدت شب اقامت</span>
 
               <div className="bg-zinc-200/50 text-zinc-600 font-semibold h-12 px-4 flex items-center gap-1 rounded-lg">
-                <span>{numberOfNights}</span>
+                <span>{numberOfNights > 0 ? numberOfNights : '-'}</span>
                 <span>شب</span>
               </div>
             </div>

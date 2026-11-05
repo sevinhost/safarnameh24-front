@@ -11,16 +11,16 @@ import { ICEmail, ICLocation, ICPhone } from '@/components/icons';
 
 export const footer = {
   logo: '/image/logo/full-red-gray.png',
-  title: 'Agency Safarname24 Hotel',
+  title: 'Agency safarnameh24 Hotel',
   desc: `        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
         از طراحان گرافیک است. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
         صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم متن ساختگی با
         تولید سادگی نامفهوم از که است چاپگر متن ساختگی با تولید سادگی که از آن
         بابت میباشد.`,
-  copyright: 'تمامی حقوق این وبسایت متعلق به سفرنامه ۲۴ میباشد .',
+  copyright: 'تمامی حقوق این وبسایت متعلق به سفرنامه 24 میباشد .',
   communicationWays: {
     phone: { icon: <ICPhone />, value: '0912 345 6789' },
-    email: { icon: <ICEmail />, value: 'Safarname24@info.com' },
+    email: { icon: <ICEmail />, value: 'safarnameh24@info.com' },
     address: {
       icon: <ICLocation />,
       value: 'تهران، جردن خیابان مطهری، رو به رو بانک پارسیان',

@@ -47,7 +47,7 @@ export function PriceRange() {
     queryKey: ['hotel-list', queryOptions],
     queryFn: () =>
       axiosInstance(
-        `/hotel/best-hotels/price-range?start-date=${queryOptions.startDate}&end-date=${queryOptions.endDate}&passengers=${queryOptions.passengers}`,
+        `/hotel/hotels/price-range?start-date=${queryOptions.startDate}&end-date=${queryOptions.endDate}&passengers=${queryOptions.passengers}`,
       ),
   });
 

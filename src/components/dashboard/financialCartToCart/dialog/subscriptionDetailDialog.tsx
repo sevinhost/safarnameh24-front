@@ -34,7 +34,7 @@ export default function SubscriptionDetailsDialog({
             <DialogDescription className="block text-right text-sm font-light leading-6 text-black/70">
               مشتری گرامی عزیز برای دریافت کد تخفیف کارت اشتراکی باید به سطح
               خرید های که پایین قرار داده شده رعایت بفرمایید و لذا سیستم با توجه
-              به خرید های مدام شما از سفرنامه ۲۴ روند خرید شما اتومات حساب میشود
+              به خرید های مدام شما از سفرنامه 24 روند خرید شما اتومات حساب میشود
               و بعد از هر استفاده سطح بعدی شروع میشه.
             </DialogDescription>
           </div>

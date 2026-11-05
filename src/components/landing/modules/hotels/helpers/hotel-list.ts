@@ -1,5 +1,5 @@
 import { parseAsStringEnum } from 'nuqs';
-import { Hotel } from '@/types/landing/best-hotels';
+import { Hotel } from '@/types/landing/hotels';
 
 import { DateObject } from 'react-multi-date-picker';
 import persianCalendar from 'react-date-object/calendars/persian';

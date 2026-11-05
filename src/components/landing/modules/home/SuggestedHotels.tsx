@@ -38,7 +38,7 @@ export function SuggestedHotels() {
       <TopBarConfig
         arraylength={data?.data?.length}
         viewAllHref="/hotel?suggested-hotels=show"
-        subtitle="هتل های پیشنهادی سفرنامه ۲۴ رو از دست نده !"
+        subtitle="هتل های پیشنهادی سفرنامه 24 رو از دست نده !"
         title={{ type: 'single', text: 'هتل های پیشنهادی' }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}

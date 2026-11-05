@@ -1,2 +1,2 @@
-import logo from './logo.png';
+import logo from './logo-3.jpg';
 export default logo;

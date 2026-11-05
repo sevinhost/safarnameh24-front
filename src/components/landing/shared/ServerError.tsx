@@ -16,7 +16,7 @@ export function ServerError() {
       <p className="text-lg font-bold lg:text-xl">خطایی رخ داده است !</p>
 
       <p className="mb-6 mt-2 text-cs85 font-semibold text-zinc-600 lg:text-cs09">
-        متاسفانه مشکلی در سرور سفرنامه ۲۴ بوجود آمده است
+        متاسفانه مشکلی در سرور سفرنامه 24 بوجود آمده است
       </p>
 
       <button

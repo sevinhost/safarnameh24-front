@@ -122,7 +122,7 @@ export default function ReservationFactorPage({
           />
           <div className="pointer-events-none absolute right-5 top-5 z-20 select-none">
             <Image
-              alt="لوگو سفرنامه ۲۴"
+              alt="لوگو سفرنامه 24"
               priority
               unoptimized
               src={LogoIcon.src}
@@ -144,7 +144,7 @@ export default function ReservationFactorPage({
                 sepahboodFont.className,
               )}
             >
-              سفرنامه ۲۴
+              سفرنامه 24
             </span>
             <span
               className={'block text-center text-cs06 font-normal text-black'}
@@ -153,7 +153,7 @@ export default function ReservationFactorPage({
             </span>
           </div>
           <Image
-            alt="لوگو سفرنامه ۲۴"
+            alt="لوگو سفرنامه 24"
             priority
             unoptimized
             src={LogoIcon.src}

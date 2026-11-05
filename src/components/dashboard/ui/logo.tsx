@@ -19,7 +19,7 @@ export default function Logo({
         <Image
           width={100}
           height={100}
-          alt={'سفرنامه ۲۴'}
+          alt={'سفرنامه 24'}
           src={logo}
           className="w-16"
         />
@@ -32,14 +32,14 @@ export default function Logo({
           <Image
             width={100}
             height={100}
-            alt={'سفرنامه ۲۴'}
+            alt={'سفرنامه 24'}
             src={logo}
             className="w-16"
           />
         </Link>
         <div className="text-[#27272A ]">
           <span className="mb-0.5 block truncate text-[13px] font-extrabold">
-            سفرنامه ۲۴
+            سفرنامه 24
           </span>
           <span
             className="block truncate font-inter text-[13px] font-semibold"

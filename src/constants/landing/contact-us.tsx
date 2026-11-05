@@ -68,7 +68,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'تلگرام | Telegram',
-      link: 'te.safarname24.com',
+      link: 'te.safarnameh24.com',
       href: '/',
     },
     {
@@ -107,7 +107,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'اینستاگرام | Instagram',
-      link: 'insta.safarname24.com',
+      link: 'insta.safarnameh24.com',
       href: '',
     },
     {
@@ -138,7 +138,7 @@ export const contactUs = {
         </svg>
       ),
       title: 'لینکدین  |  LinkedIn',
-      link: 'te.safarname24.com',
+      link: 'te.safarnameh24.com',
       href: '',
     },
     {
@@ -157,18 +157,18 @@ export const contactUs = {
         </svg>
       ),
       title: 'توییتر  |  Twitter (X)',
-      link: 'twitter.safarname24.com',
+      link: 'twitter.safarnameh24.com',
       href: '',
     },
   ],
   sendTicketReaction: {
     success: {
       title: 'پیام شما با موفقیت ارسال شد',
-      desc: 'به زودی تیم پاسخگویی سفرنامه ۲۴ با شما تماس خواهند گرفت , از همراهی شما متشکریم .',
+      desc: 'به زودی تیم پاسخگویی سفرنامه 24 با شما تماس خواهند گرفت , از همراهی شما متشکریم .',
     },
     fail: {
       title: 'متاسفانه پیام شما ارسال نشد !',
-      desc: 'برای ارسال پیام به شبکه ارتباطات سفرنامه ۲۴ مشکلی بوجود آمده است . لطفا مجدد تلاش کنید , از صبر و شکیبایی شما متشکریم .',
+      desc: 'برای ارسال پیام به شبکه ارتباطات سفرنامه 24 مشکلی بوجود آمده است . لطفا مجدد تلاش کنید , از صبر و شکیبایی شما متشکریم .',
     },
   },
 };

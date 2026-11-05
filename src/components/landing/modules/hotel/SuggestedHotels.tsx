@@ -45,7 +45,7 @@ export function SuggestedHotels(props: Props) {
     <Section sectionID="suggested-hotels" className="-ml-5 xl:ml-0">
       <TopBarConfig
         arraylength={data?.data.length}
-        subtitle="هتل های پیشنهادی سفرنامه ۲۴ رو از دست نده !"
+        subtitle="هتل های پیشنهادی سفرنامه 24 رو از دست نده !"
         title={{ type: 'single', text: topBarConfigTitle }}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}

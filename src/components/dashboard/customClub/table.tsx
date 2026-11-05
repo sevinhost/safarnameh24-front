@@ -22,7 +22,7 @@ import TakeGiftRuleDialog from './dialog/takeGiftRuleDialog';
 import GiftGainErrorDialog from './dialog/giftGainErrorDialog';
 import GiftGainedDialog from './dialog/giftGainedDialogOpened';
 import { Skeleton } from '@/components/ui/skeleton';
-import SafarnameLogo from '../../../../public/image/logo/white.webp';
+import safarnameh24Logo from '../../../../public/image/logo/white.webp';
 import CustomPagination from '../ui/customPagination';
 import EmptyTable from '../api/emptyTable';
 import useCustomerClubPoints from '@/hooks/dashboard/useCustomerClubPoints';
@@ -303,7 +303,7 @@ export default function CustomersClubTable({
                         alt={item.shopping_center_name}
                         width={40}
                         height={40}
-                        src={item.shopping_center_image || SafarnameLogo.src}
+                        src={item.shopping_center_image || safarnameh24Logo.src}
                         className="w-full h-full absolute top-0 left-0 object-cover"
                       />
                     </div>
@@ -379,7 +379,7 @@ export default function CustomersClubTable({
                           alt={item.shopping_center_name}
                           width={60}
                           height={60}
-                          src={item.shopping_center_image || SafarnameLogo.src}
+                          src={item.shopping_center_image || safarnameh24Logo.src}
                           className="w-full h-full absolute top-0 left-0 object-cover"
                         />
                       </div>

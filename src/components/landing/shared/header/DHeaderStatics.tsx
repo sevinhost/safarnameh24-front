@@ -29,7 +29,7 @@ export default function DHeaderStatics() {
 
   return (
     <Link href={'/'} className="flex items-center gap-3.5">
-      <div className="flex-center h-16 w-16 overflow-hidden rounded-cs-10">
+      <div className="flex-center size-16 p-1 overflow-hidden rounded-cs-10">
         <Image
           src={logo}
           alt="logo"

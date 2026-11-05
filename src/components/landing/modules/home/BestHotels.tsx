@@ -30,7 +30,7 @@ export function BestHotels() {
 
   const { data, status } = useQuery<ApiResponse>({
     queryKey: ['best-hotels'],
-    queryFn: () => generalInstance('/hotel/best-hotels/'),
+    queryFn: () => generalInstance('/hotel/hotels/'),
   });
 
   if (isEmptyOrInvalid({ data, status })) return null;

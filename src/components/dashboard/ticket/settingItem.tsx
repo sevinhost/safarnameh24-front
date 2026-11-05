@@ -49,7 +49,7 @@ const fakeMessages: MessageItemPropsType['data'][] = [
     createdAt: new Date().toISOString(),
     from: 'user',
     message:
-      'سلام خوبی.. من یه سوال خیلی مبهم داشتم درمورد سیستم عملکردی سفرنامه ۲۴ اگر بتونی کمک کنی ممنونت میشم.',
+      'سلام خوبی.. من یه سوال خیلی مبهم داشتم درمورد سیستم عملکردی سفرنامه 24 اگر بتونی کمک کنی ممنونت میشم.',
     type: 'text',
     answererName: 'شما',
   },
@@ -57,7 +57,7 @@ const fakeMessages: MessageItemPropsType['data'][] = [
     createdAt: new Date().toISOString(),
     from: 'answerer',
     message:
-      'سلام خوبی من یه سوال خیلی مبهم داشتم درمورد سیستم عملکردی سفرنامه ۲۴ اگر بتونی کمک کنی ممنونت میشم. ',
+      'سلام خوبی من یه سوال خیلی مبهم داشتم درمورد سیستم عملکردی سفرنامه 24 اگر بتونی کمک کنی ممنونت میشم. ',
     type: 'text',
     answererName: 'محمد علی کلی',
   },
