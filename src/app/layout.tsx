@@ -144,7 +144,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+   <html lang="fa" dir="rtl">
       <body
         className={cn(
           interFont.variable,
