@@ -31,7 +31,7 @@ export default function CardShowCase({
     >
       <div className="flex w-full items-center justify-between gap-3">
         <span className="block flex-1 truncate text-left text-cs75 font-semibold text-white">
-          {data ? data.bankName : 'زروان تریپ'}
+          {data ? data.bankName : 'سفرنامه 24'}
         </span>
         <BankIcon
           name={data ? data?.bankIcon : 'unknown'}

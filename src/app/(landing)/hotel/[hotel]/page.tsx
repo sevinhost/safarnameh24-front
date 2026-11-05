@@ -56,8 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!seo) {
     return {
-      title: 'رزرو هتل در زروان تریپ',
-      description: 'بهترین قیمت رزرو آنلاین هتل در زروان تریپ با پشتیبانی ۲۴ ساعته',
+      title: 'رزرو هتل در سفرنامه 24',
+      description: 'بهترین قیمت رزرو آنلاین هتل در سفرنامه 24 با پشتیبانی ۲۴ ساعته',
     };
   }
 
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       follow: !seo.no_index,
     },
     alternates: {
-      canonical: seo.canonical_url || `https://zarvantrip.com/hotel/${hotelSlug}`,
+      canonical: seo.canonical_url || `https://safarnameh 24.com/hotel/${hotelSlug}`,
     },
     openGraph: {
       title: seo.og_title || seo.title_tag,
@@ -97,7 +97,7 @@ export default async function Hotel({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
     name: hotelData.name,
-    description: hotelData.description || `رزرو هتل ${hotelData.name} در زروان تریپ`,
+    description: hotelData.description || `رزرو هتل ${hotelData.name} در سفرنامه 24`,
     starRating: {
       '@type': 'Rating',
       ratingValue: hotelData.stars || 3,

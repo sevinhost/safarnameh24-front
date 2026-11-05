@@ -40,7 +40,7 @@ export function LookingAtServices() {
     <div>
       <TopBarConfig
         subtitle="یکی از قوی ترین خدمات های هتلداری ایران !"
-        title={{ type: 'single', text: 'نگاهی به خدمات زروان تریپ' }}
+        title={{ type: 'single', text: 'نگاهی به خدمات سفرنامه 24' }}
       />
 
       <div className="grid items-start gap-20 lg:grid-cols-[1.2fr_1fr]">

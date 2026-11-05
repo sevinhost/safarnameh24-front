@@ -11,7 +11,7 @@ export default function Logo() {
         width={200}
         height={200}
         src={logo}
-        alt="zarvantrip-logo"
+        alt="safarnameh 24-logo"
         className="mt-3 aspect-auto w-24 object-contain xl:mb-4 xl:mt-1"
       />
     </div>

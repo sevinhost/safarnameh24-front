@@ -51,7 +51,7 @@ export default function SearchBarContent(props: Props) {
               </div>
 
               <SheetTitle className="mt-2 font-inter text-[clamp(0.95rem,3vw,1rem)] font-bold capitalize">
-                zarvantrip
+                safarnameh 24
               </SheetTitle>
 
               <button

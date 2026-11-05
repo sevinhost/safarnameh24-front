@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const TARGET_BASE_URL = 'https://cps.zarvantrip.com/api/v1';
+const TARGET_BASE_URL = 'https://cps.safarnameh24.com/api/v1';
 
 async function proxyHandler(
   req: NextRequest,

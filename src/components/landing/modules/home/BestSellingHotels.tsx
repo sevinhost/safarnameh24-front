@@ -51,12 +51,12 @@ export function BestSellingHotels() {
       <TopBarConfig
         title={{
           type: 'single',
-          text: 'هتل های پرفروش و جذاب زروان تریپ',
+          text: 'هتل های پرفروش و جذاب سفرنامه 24',
         }}
         arraylength={hotels.length}
         prevClickFunc={() => swiperRef.current?.slidePrev()}
         nextClickFunc={() => swiperRef.current?.slideNext()}
-        subtitle="هتل های پرفروش و جذاب زروان تریپ رو از دست نده !"
+        subtitle="هتل های پرفروش و جذاب سفرنامه 24 رو از دست نده !"
       />
 
       <div className="grid-cols-[30%_67%] justify-between xl:grid">

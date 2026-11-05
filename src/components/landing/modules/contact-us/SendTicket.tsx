@@ -76,7 +76,7 @@ export function SendTicket() {
   return (
     <div>
       <TopBarConfig
-        title={{ type: 'single', text: 'تماس با شبکه زروان تریپ' }}
+        title={{ type: 'single', text: 'تماس با شبکه سفرنامه 24' }}
         subtitle="دوست داریم نظرات و پیشنهادات شما را بشنویم پیام هایتان را با ما در میان بذارید."
       />
 

@@ -6,21 +6,21 @@ import { Metadata } from 'next';
 
 // متا دیتای عمومی برای صفحات لندینگ
 export const metadata: Metadata = {
-  metadataBase: new URL('https://zarvantrip.com'),
+  metadataBase: new URL('https://safarnameh24.com'),
   title: {
-    default: 'زروان تریپ | مرجع رزرو آنلاین هتل‌های داخلی و خارجی',
-    template: '%s | زروان تریپ',
+    default: 'سفرنامه 24 | مرجع رزرو آنلاین هتل‌های داخلی و خارجی',
+    template: '%s | سفرنامه 24',
   },
-  description: 'با زروان تریپ، بهترین هتل‌ها را با قیمت مناسب رزرو کنید. اقامتی راحت و بی‌دغدغه در هتل‌های منتخب با پشتیبانی ۲۴ ساعته.',
-  keywords: ['رزرو هتل', 'زروان تریپ', 'ZarvanTrip', 'بهترین هتل ها', 'رزرو آنلاین هتل'],
-  authors: [{ name: 'ZarvanTrip Team' }],
+  description: 'با سفرنامه 24، بهترین هتل‌ها را با قیمت مناسب رزرو کنید. اقامتی راحت و بی‌دغدغه در هتل‌های منتخب با پشتیبانی ۲۴ ساعته.',
+  keywords: ['رزرو هتل', 'سفرنامه 24', 'safarnameh 24', 'بهترین هتل ها', 'رزرو آنلاین هتل'],
+  authors: [{ name: 'safarnameh 24 Team' }],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
     type: 'website',
-    siteName: 'ZarvanTrip',
+    siteName: 'safarnameh 24',
     locale: 'fa_IR',
   },
 };

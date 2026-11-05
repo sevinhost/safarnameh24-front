@@ -24,7 +24,7 @@ const urlTitles: urlTitleType[] = [
   {
     type: 'normal',
     href: '/dashboard',
-    title: 'داشبورد زروان تریپ',
+    title: 'داشبورد سفرنامه 24',
   },
   {
     type: 'normal',

@@ -10,15 +10,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cps.zarvantrip.com',
+        hostname: 'cps.safarnameh24.com',
       },
       {
         protocol: 'https',
-        hostname: 'zarvantrip.com',
+        hostname: 'safarnameh24.com',
       },
       {
         protocol: 'http',
-        hostname: 'cps.zarvantrip.com',
+        hostname: 'cps.safarnameh24.com',
       },
     ],
   },

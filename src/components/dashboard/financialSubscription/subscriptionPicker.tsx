@@ -87,7 +87,7 @@ export default function SubscriptionPicker({
             <div className="hidden h-[175px] w-full flex-col items-center justify-between gap-3 rounded-xl bg-gray-300 bg-gradient-to-bl from-transparent to-cs-red p-4 text-white">
               <div className="w-full">
                 <span className="block flex-1 truncate text-left text-cs75 font-semibold text-white">
-                  اشتراک زروان تریپ
+                  اشتراک سفرنامه 24
                 </span>
               </div>
               <div className="w-full">
@@ -122,7 +122,7 @@ export default function SubscriptionPicker({
                     >
                       <div className="w-full">
                         <span className="block flex-1 truncate text-left text-cs75 font-semibold text-white">
-                          اشتراک زروان تریپ
+                          اشتراک سفرنامه 24
                         </span>
                       </div>
                       <div className="w-full">

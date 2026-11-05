@@ -33,8 +33,8 @@ export function ReasonOfSelection() {
   return (
     <div className="-ml-5 lg:ml-0">
       <TopBarConfig
-        title={{ type: 'single', text: 'دلایل انتخاب زروان تریپ' }}
-        subtitle="موارد مهم برای اینکه باید زروان تریپ اولویت باشه !"
+        title={{ type: 'single', text: 'دلایل انتخاب سفرنامه 24' }}
+        subtitle="موارد مهم برای اینکه باید سفرنامه 24 اولویت باشه !"
       />
 
       {status === 'pending' ? (

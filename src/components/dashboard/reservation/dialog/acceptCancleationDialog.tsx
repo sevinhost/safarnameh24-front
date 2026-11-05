@@ -44,7 +44,7 @@ export default function AcceptCanclationDialog({
           </DrawerHeader>
           <div className="px-[24px] py-0">
             <DrawerDescription className="text-[12px] font-medium text-gray-500">
-              مشترک گرامی عزیز پس از تایید ادمین زروان تریپ رزرو شما لغو و با
+              مشترک گرامی عزیز پس از تایید ادمین سفرنامه 24 رزرو شما لغو و با
               شما تماس گرفته خواهد شد از همراهی شما متشکریم.
             </DrawerDescription>
           </div>
@@ -70,7 +70,7 @@ export default function AcceptCanclationDialog({
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="text-right text-sm font-medium text-black">
-            مشترک گرامی عزیز پس از تایید ادمین زروان تریپ رزرو شما لغو و با شما
+            مشترک گرامی عزیز پس از تایید ادمین سفرنامه 24 رزرو شما لغو و با شما
             تماس گرفته خواهد شد از همراهی شما متشکریم.
           </DialogDescription>
           <DialogFooter dir="ltr">

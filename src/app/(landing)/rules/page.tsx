@@ -11,9 +11,9 @@ export const dynamic = 'force-dynamic';
 
 // 1. متادیتا برای این صفحه
 export const metadata: Metadata = {
-  title: 'قوانین و مقررات زروان تریپ | شرایط رزرو هتل',
-  description: 'پیش از رزرو هتل، قوانین و مقررات زروان تریپ شامل شرایط کنسلی، استرداد وجه و حریم خصوصی کاربران را مطالعه کنید.',
-  alternates: { canonical: 'https://zarvantrip.com/rules' },
+  title: 'قوانین و مقررات سفرنامه 24 | شرایط رزرو هتل',
+  description: 'پیش از رزرو هتل، قوانین و مقررات سفرنامه 24 شامل شرایط کنسلی، استرداد وجه و حریم خصوصی کاربران را مطالعه کنید.',
+  alternates: { canonical: 'https://safarnameh 24.com/rules' },
 };
 
 // تابع دریافت داده در سمت سرور (کاملاً ایمن در برابر ارورهای URL و قطع بودن سرور)
@@ -53,7 +53,7 @@ export default async function Rules() {
 
   return (
     <main className="container mx-auto">
-      <h1 className="sr-only">قوانین و مقررات رزرو هتل زروان تریپ</h1>
+      <h1 className="sr-only">قوانین و مقررات رزرو هتل سفرنامه 24</h1>
 
       <div className="mt-2">
         <StickyArea
